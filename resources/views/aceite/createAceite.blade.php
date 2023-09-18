@@ -6,7 +6,7 @@
     <title>Crear Aceite</title>
 </head>
 <body>
-    <h1>Formulario de Aceite</h1>
+    <h1>Formulario de Aceites</h1>
     <form action="aceite" method="POST"> 
         <h3>Nombre</h3>
             <label for="nombre">Nombre:</label>
