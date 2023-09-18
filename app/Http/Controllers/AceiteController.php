@@ -12,15 +12,14 @@ class AceiteController extends Controller
      */
     public function index()
     {
-        //
+        return view('aceite/indexAceite');
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('aceite/createAceite');
     }
 
     /**

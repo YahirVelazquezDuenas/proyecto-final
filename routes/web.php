@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\AceiteController;
+use App\Http\Controllers\ClienteController;
+use App\Models\Aceite;
+use App\Models\Cliente;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/createAceite', function () {
+    return view('createAceite');
+});
+
+
+Route::resource('aceite', AceiteController::class);
