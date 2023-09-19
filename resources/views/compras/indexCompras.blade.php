@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Encabezados de aceites</h1>
+    <h1>Encabezados de compras</h1>
 </body>
 </html>
