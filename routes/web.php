@@ -24,6 +24,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::post('/compras', 'ComprasController@store')->name('createCompras');
 Route::resource('aceite', AceiteController::class);
 Route::resource('compras', ComprasController::class);

@@ -27,7 +27,17 @@ class ComprasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'fecha' => 'required|date',
+            'metodo' => 'required|string',
+            'total' => 'required|numeric',
+        ]);
+        $compra = new Compras();
+        $compra->fecha = $request->fecha;
+        $compra->metodo = $request->metodo;
+        $compra->total = $request->total;
+        $compra->save();
+        return back()->with('success', 'La compra se ha registrado con éxito');
     }
 
     /**

@@ -7,7 +7,13 @@
 </head>
 <body>
     <h1>Formulario de Aceites</h1>
-    <form action="" method="GET"> 
+    <form action="{{ url('/compras') }}" method="POST"> 
+        @csrf
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <h3>Fecha</h3>
             <label for="fecha">Fecha de compra:</label>
             <input type="date" id="fecha" name="fecha" placeholder="">
