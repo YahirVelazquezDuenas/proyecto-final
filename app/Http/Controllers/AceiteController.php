@@ -53,7 +53,7 @@ class AceiteController extends Controller
      */
     public function show(Aceite $aceite)
     {
-        //
+        
     }
 
     /**
