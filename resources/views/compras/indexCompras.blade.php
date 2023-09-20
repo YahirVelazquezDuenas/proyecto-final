@@ -7,5 +7,12 @@
 </head>
 <body>
     <h1>Encabezados de compras</h1>
+    @foreach ($comprasIndex as $compras)
+        <ul>
+            <li>{{ $compras->fecha }}
+            <br>{{ $compras->metodo }}
+            <br>{{ $compras->total }}</li>
+        </ul>
+    @endforeach
 </body>
 </html>

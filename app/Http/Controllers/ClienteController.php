@@ -12,7 +12,10 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return view('cliente/indexCliente');
+        $cliente= new Cliente ();
+
+        $clienteIndex = Cliente::all();
+        return view('cliente/indexCliente', compact ('clienteIndex'));
     }
 
     /**
@@ -46,7 +49,7 @@ class ClienteController extends Controller
         $cliente->contraseña = $request->contraseña;
         $cliente->comentario = $request->comentario;
         $cliente->save();
-        return back()->with('success', 'El cliente se ha registrado con éxito');
+        return redirect('/cliente');
     }
 
     /**

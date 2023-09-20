@@ -12,7 +12,11 @@ class AceiteController extends Controller
      */
     public function index()
     {
-        return view('aceite/indexAceite');
+        $aceite= new Aceite ();
+
+        $aceiteIndex = Aceite::all();
+        return view('aceite/indexAceite', compact ('aceiteIndex'));
+        
     }
     /**
      * Show the form for creating a new resource.
@@ -41,7 +45,7 @@ class AceiteController extends Controller
         $aceite->marca = $request->marca;
         $aceite->descripcion = $request->descripcion;
         $aceite->save();
-        return back()->with('success', 'El aceite se ha registrado con éxito');
+        return redirect('/aceite');
     }
 
     /**

@@ -7,5 +7,14 @@
 </head>
 <body>
     <h1>Encabezados de aceites</h1>
+    @foreach ($aceiteIndex as $aceite)
+        <ul>
+            <li>{{ $aceite->nombre }}
+            <br>{{ $aceite->tipo }}
+            <br>{{ $aceite->cantidad }}
+            <br>{{ $aceite->marca }}
+            <br>{{ $aceite->descripcion }}</li>
+        </ul>        
+    @endforeach
 </body>
 </html>

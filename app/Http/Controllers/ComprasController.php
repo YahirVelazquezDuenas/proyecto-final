@@ -12,7 +12,11 @@ class ComprasController extends Controller
      */
     public function index()
     {
-        return view('compras/indexCompras');
+        $compras= new Compras ();
+
+        $comprasIndex = Compras::all();
+
+        return view('compras/indexCompras', compact ('comprasIndex'));
     }
     /**
      * Show the form for creating a new resource.
@@ -37,7 +41,7 @@ class ComprasController extends Controller
         $compra->metodo = $request->metodo;
         $compra->total = $request->total;
         $compra->save();
-        return back()->with('success', 'La compra se ha registrado con éxito');
+        return redirect('/compras');
     }
 
     /**
