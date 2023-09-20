@@ -28,18 +28,26 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        /*$request->validate([
-            'nombre' => 'required|date',
+        $request->validate([
+            'nombre' => 'required|string',
             'direccion' => 'required|string',
-            'genero' => 'required|numeric',
+            'genero' => 'required|string',
+            'telefono' => 'required|string',
+            'correo' => 'required|string',
+            'contraseña' => 'required|string',
+            'comentario' => 'required|string',
         ]);
-        $compra = new Compras();
-        $compra->fecha = $request->fecha;
-        $compra->metodo = $request->metodo;
-        $compra->total = $request->total;
-        $compra->save();
-        return back()->with('success', 'La compra se ha registrado con éxito');
-    */}
+        $cliente = new Cliente();
+        $cliente->nombre = $request->nombre;
+        $cliente->direccion = $request->direccion;
+        $cliente->genero = $request->genero;
+        $cliente->telefono = $request->telefono;
+        $cliente->correo = $request->correo;
+        $cliente->contraseña = $request->contraseña;
+        $cliente->comentario = $request->comentario;
+        $cliente->save();
+        return back()->with('success', 'El cliente se ha registrado con éxito');
+    }
 
     /**
      * Display the specified resource.

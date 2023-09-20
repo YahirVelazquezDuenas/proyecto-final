@@ -25,5 +25,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('/compras', 'ComprasController@store')->name('createCompras');
+Route::post('/aceite', 'AceiteController@store')->name('createAceite');
+Route::post('/cliente', 'ClienteController@store')->name('createCliente');
 Route::resource('aceite', AceiteController::class);
+Route::resource('cliente', ClienteController::class);
 Route::resource('compras', ComprasController::class);
