@@ -6,8 +6,14 @@
     <title>Crear Aceite</title>
 </head>
 <body>
-    <h1>Formulario de Aceites</h1>
-    <form action="" method="POST"> 
+    <h1>Registro de aceites</h1>
+    <form action="{{ url('/aceite') }}" method="POST"> 
+        @csrf
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <h3>Nombre</h3>
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" placeholder="Nombre">

@@ -27,7 +27,21 @@ class AceiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string',
+            'tipo' => 'required|string',
+            'cantidad' => 'required|numeric',
+            'marca' => 'required|string',
+            'descripcion' => 'required|string',
+        ]);
+        $aceite = new Aceite();
+        $aceite->nombre = $request->nombre;
+        $aceite->tipo = $request->tipo;
+        $aceite->cantidad = $request->cantidad;
+        $aceite->marca = $request->marca;
+        $aceite->descripcion = $request->descripcion;
+        $aceite->save();
+        return back()->with('success', 'El aceite se ha registrado con éxito');
     }
 
     /**

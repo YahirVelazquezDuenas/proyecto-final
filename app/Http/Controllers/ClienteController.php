@@ -12,7 +12,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        return view('cliente/indexCliente');
     }
 
     /**
@@ -20,7 +20,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('cliente/createCliente');
     }
 
     /**
@@ -28,8 +28,18 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        /*$request->validate([
+            'nombre' => 'required|date',
+            'direccion' => 'required|string',
+            'genero' => 'required|numeric',
+        ]);
+        $compra = new Compras();
+        $compra->fecha = $request->fecha;
+        $compra->metodo = $request->metodo;
+        $compra->total = $request->total;
+        $compra->save();
+        return back()->with('success', 'La compra se ha registrado con éxito');
+    */}
 
     /**
      * Display the specified resource.

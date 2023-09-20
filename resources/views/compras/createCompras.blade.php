@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Aceite</title>
+    <title>Crear Compra</title>
 </head>
 <body>
-    <h1>Formulario de Aceites</h1>
+    <h1>Registro de compras</h1>
     <form action="{{ url('/compras') }}" method="POST"> 
         @csrf
         @if(session('success'))
