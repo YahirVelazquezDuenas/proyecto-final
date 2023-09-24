@@ -30,3 +30,5 @@ Route::post('/cliente', 'ClienteController@store')->name('createCliente');
 Route::resource('aceite', AceiteController::class);
 Route::resource('cliente', ClienteController::class);
 Route::resource('compras', ComprasController::class);
+Route::get('/compras/{id}', 'ComprasController@show')->name('showCompras');
+

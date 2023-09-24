@@ -29,5 +29,7 @@
         <h3>Enviar</h3>
             <label for="enviar">Enviar:</label>
             <input type="submit" id="enviar" name="enviar">
+    </form>
+    <a href="{{ url('/compras') }}">Volver a encabezado de compras.</a>
 </body>
 </html>

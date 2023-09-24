@@ -47,10 +47,17 @@ class ComprasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Compras $compras)
+    public function show(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $compra = Compras::find($id);
+            
+        if (!$compra) {
+            return redirect()->back()->with('error', 'La compra no se encontró.');
+        }
+        return view('/compras/showCompras', ['compra' => $compra]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
