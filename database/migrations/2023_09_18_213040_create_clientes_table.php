@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('direccion');
             $table->string('genero');
-            $table->string('telefono');
-            $table->string('correo');
-            $table->string('contraseña');
+            $table->string('telefono')->unique();
+            $table->string('correo')->unique();
+            $table->string('contraseña')->unique();
             $table->string('comentario');
             $table->timestamps();
         });

@@ -24,7 +24,7 @@
         <br>
         <h3>Cantidad</h3>
             <label for="cantidad">Cantidad:</label>
-            <input type="text" id="cantidad" name="cantidad" placeholder="Cantidad">
+            <input type="text" id="cantidad" name="cantidad" placeholder="$">
         <br>
         <h3>Marca</h3>
             <label for="marca">Marca:</label>
@@ -33,7 +33,8 @@
         <h3>Descripcion</h3>
             <label for="descripcion">Descripcion:</label>
         <br>
-            <textarea id="descripcion" name="descripcion" placeholder="Descripcion" rows="3" cols="40"></textarea>
+            <textarea id="descripcion" name="descripcion" placeholder="Deje su opinión por favor" 
+            rows="3" cols="40"></textarea>
         <br>
         <h3>Enviar</h3>
             <label for="enviar">Enviar:</label>

@@ -35,8 +35,8 @@ class ClienteController extends Controller
             'nombre' => 'required|string',
             'direccion' => 'required|string',
             'genero' => 'required|string',
-            'telefono' => 'required|string',
-            'correo' => 'required|string',
+            'telefono' => 'required|numeric',
+            'correo' => 'required|email',
             'contraseña' => 'required|string',
             'comentario' => 'required|string',
         ]);
