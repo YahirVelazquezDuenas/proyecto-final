@@ -20,7 +20,7 @@
             <label for="id">ID de compra:</label>
             <input type="id" id="id" name="id" placeholder="12">
         <br>
-        <label for="enviar"></label>
+        <label for="enviarse"></label>
         <input type="submit" id="enviar" name="enviar">
     </form>
     <h3>Compras registradas:</h3>
