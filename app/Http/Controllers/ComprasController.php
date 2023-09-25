@@ -58,6 +58,8 @@ class ComprasController extends Controller
         return view('/compras/showCompras', ['compra' => $compra]);
     }
 
+    //si quisieramos pasar solo el id, se podría hacer el find directamente y colocarlo en la URL
+
 
     /**
      * Show the form for editing the specified resource.
