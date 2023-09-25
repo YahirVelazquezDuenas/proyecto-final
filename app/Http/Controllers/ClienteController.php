@@ -55,9 +55,15 @@ class ClienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cliente $cliente)
+    public function show(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $cliente = Cliente::find($id);
+            
+        if (!$cliente) {
+            return redirect()->back()->with('error', 'El cliente no se encontró.');
+        }
+        return view('/cliente/showCliente', ['cliente' => $cliente]);
     }
 
     /**

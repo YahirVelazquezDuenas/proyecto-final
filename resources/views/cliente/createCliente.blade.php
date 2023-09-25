@@ -54,5 +54,7 @@
         <h3>Enviar</h3>
             <label for="enviar">Enviar:</label>
             <input type="submit" id="enviar" name="enviar">
+        </form>
+        <a href="{{ url('/cliente') }}">Volver a encabezado de clientes.</a>
 </body>
 </html>

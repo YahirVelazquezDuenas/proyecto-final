@@ -26,9 +26,10 @@
     <h3>Compras registradas:</h3>
     @foreach ($comprasIndex as $compras)
         <ul>
-            <li>{{ $compras->fecha }}
-            <br>{{ $compras->metodo }}
-            <br>{{ $compras->total }}</li>
+            <li>ID: {{ $compras->id }}
+            <br>Fecha: {{ $compras->fecha }}
+            <br>Método: {{ $compras->metodo }}
+            <br>Total: {{ $compras->total }}</li>
         </ul>
     @endforeach
 </body>

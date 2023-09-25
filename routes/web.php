@@ -24,11 +24,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/compras', 'ComprasController@store')->name('createCompras');
 Route::post('/aceite', 'AceiteController@store')->name('createAceite');
 Route::post('/cliente', 'ClienteController@store')->name('createCliente');
+Route::post('/compras', 'ComprasController@store')->name('createCompras');
 Route::resource('aceite', AceiteController::class);
 Route::resource('cliente', ClienteController::class);
 Route::resource('compras', ComprasController::class);
+Route::get('/aceite/{id}', 'AceiteController@show')->name('showAceite');
+Route::get('/cliente/{id}', 'ClienteController@show')->name('showCliente');
 Route::get('/compras/{id}', 'ComprasController@show')->name('showCompras');
+
 

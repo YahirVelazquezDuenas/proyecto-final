@@ -51,9 +51,15 @@ class AceiteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Aceite $aceite)
+    public function show(Request $request)
     {
-        
+        $id = $request->input('id');
+        $aceite = Aceite::find($id);
+            
+        if (!$aceite) {
+            return redirect()->back()->with('error', 'El aceite no se encontró.');
+        }
+        return view('/aceite/showAceite', ['aceite' => $aceite]);
     }
 
     /**
