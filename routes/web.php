@@ -1,6 +1,14 @@
 <?php
 
+use App\Http\Controllers\AceiteController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ComprasController;
+use App\Models\Aceite;
+use App\Models\Cliente;
+use App\Models\Compras;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +24,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/aceite', 'AceiteController@store')->name('createAceite');
+Route::post('/cliente', 'ClienteController@store')->name('createCliente');
+Route::post('/compras', 'ComprasController@store')->name('createCompras');
+Route::resource('aceite', AceiteController::class);
+Route::resource('cliente', ClienteController::class);
+Route::resource('compras', ComprasController::class);
+Route::get('/aceite/{id}', 'AceiteController@show')->name('showAceite');
+Route::get('/cliente/{id}', 'ClienteController@show')->name('showCliente');
+Route::get('/compras/{id}', 'ComprasController@show')->name('showCompras');
+
+
