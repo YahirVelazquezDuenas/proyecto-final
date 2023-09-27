@@ -6,7 +6,7 @@
     <title>Principal de compras</title>
 </head>
 <body>
-    <h1>Encabezado de compras</h1>
+    <h1>Lista de compras</h1>
     @if(session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}
