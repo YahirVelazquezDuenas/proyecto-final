@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principal de compra</title>
+    <title>Principal de compras</title>
 </head>
 <body>
     <h1>Encabezados de compras</h1>
