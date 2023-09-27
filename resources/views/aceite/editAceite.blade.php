@@ -6,7 +6,7 @@
         <title>Editar aceites</title>
     </head>
     <body>
-        <h1>Editar aceite</h1>
+        <h1>Editar aceites</h1>
         <form action="{{ route('aceite.update', $cliente->id) }}" method="POST">
             @csrf
             @method('PUT')
