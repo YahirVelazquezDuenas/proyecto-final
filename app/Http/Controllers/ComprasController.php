@@ -36,11 +36,13 @@ class ComprasController extends Controller
             'metodo' => 'required|string',
             'total' => 'required|numeric',
         ]);
+
         $compra = new Compras();
         $compra->fecha = $request->fecha;
         $compra->metodo = $request->metodo;
         $compra->total = $request->total;
         $compra->save();
+
         return redirect('/compras');
     }
 
@@ -55,31 +57,65 @@ class ComprasController extends Controller
         if (!$compra) {
             return redirect()->back()->with('error', 'La compra no se encontró.');
         }
+
         return view('/compras/showCompras', ['compra' => $compra]);
     }
+
+    //si quisieramos pasar solo el id, se podría hacer el find directamente y colocarlo en la URL
 
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Compras $compras)
+    public function edit($id)
     {
-        //
+        $compras = Compras::find($id);
+
+        if (!$compras) {
+            return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');
+        }
+
+        return view('/compras/editCompras', ['compras' => $compras]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Compras $compras)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'fecha' => 'required|date',
+            'metodo' => 'required|string',
+            'total' => 'required|numeric',
+        ]);
+    
+        $compras = Compras::find($id);
+    
+        if (!$compras) {
+            return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');
+        }
+    
+        $compras->fecha = $request->fecha;
+        $compras->metodo = $request->metodo;
+        $compras->total = $request->total;
+        $compras->save();
+    
+        return redirect()->route('compras.index')->with('success', 'La compra se ha actualizado con éxito.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Compras $compras)
+    public function destroy($id)
     {
-        //
+        $compras = Compras::find($id);
+
+        if (!$compras) {
+            return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');
+        }
+
+        $compras->delete();
+
+        return redirect()->route('compras.index')->with('success', 'La compra se ha eliminado con éxito.');
     }
 }
