@@ -17,6 +17,7 @@
             {{ session('success') }}
         </div>
     @endif
+    <a href="{{ url('/') }}">Volver al inicio</a>
     <h3>Comprar:</h3>
     <a href="{{ url('/compras/create') }}">Hacer una nueva compra.</a>
         <br>

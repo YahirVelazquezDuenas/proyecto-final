@@ -17,6 +17,7 @@
             {{ session('success') }}
         </div>
     @endif
+    <a href="{{ url('/') }}">Volver al inicio</a>
     <h3>Cliente:</h3>
     <a href="{{ url('/cliente/create') }}">Registrar un nuevo cliente.</a>
         <br>
