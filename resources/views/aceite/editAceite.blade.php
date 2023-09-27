@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Editar aceite</title>
+        <title>Editar aceites</title>
     </head>
     <body>
         <h1>Editar aceite</h1>
