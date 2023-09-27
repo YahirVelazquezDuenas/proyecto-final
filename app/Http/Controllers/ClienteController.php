@@ -69,24 +69,63 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Cliente $cliente)
+    public function edit($id)
     {
-        //
+        $cliente = Cliente::find($id);
+
+        if (!$cliente) {
+            return redirect()->route('cliente.index')->with('error', 'El cliente no se encontró.');
+        }
+
+        return view('/cliente/editCliente', ['cliente' => $cliente]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string',
+            'direccion' => 'required|string',
+            'genero' => 'required|string',
+            'telefono' => 'required|numeric',
+            'correo' => 'required|email',
+            'contraseña' => 'required|string',
+            'comentario' => 'required|string',
+        ]);
+    
+        $cliente = Cliente::find($id);
+    
+        if (!$cliente) {
+            return redirect()->route('cliente.index')->with('error', 'El cliente no se encontró.');
+        }
+                
+        $cliente->nombre = $request->nombre;
+        $cliente->direccion = $request->direccion;
+        $cliente->genero = $request->genero;
+        $cliente->telefono = $request->telefono;
+        $cliente->correo = $request->correo;
+        $cliente->contraseña = $request->contraseña;
+        $cliente->comentario = $request->comentario;
+        $cliente->save();
+
+        return redirect()->route('cliente.index')->with('success', 'El cliente se ha actualizado con éxito.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cliente $cliente)
+    public function destroy($id)
     {
-        //
+        $cliente = Cliente::find($id);
+
+        if (!$cliente) {
+            return redirect()->route('cliente.index')->with('error', 'El cliente no se encontró.');
+        }
+
+        $cliente->delete();
+
+        return redirect()->route('cliente.index')->with('success', 'El cliente se ha eliminado con éxito.');
     }
 }

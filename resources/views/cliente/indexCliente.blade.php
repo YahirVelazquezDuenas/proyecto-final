@@ -12,6 +12,11 @@
             {{ session('error') }}
         </div>
     @endif
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <h3>Cliente:</h3>
     <a href="{{ url('/cliente/create') }}">Registrar un nuevo cliente.</a>
         <br>
@@ -33,7 +38,13 @@
             <br>Teléfono: {{ $cliente->telefono }}
             <br>Correo: {{ $cliente->correo }}
             <br>Contraseña: {{ $cliente->contraseña }}
-            <br>Comentario: {{ $cliente->comentario }}</li>
+            <br>Comentario: {{ $cliente->comentario }}
+            <br><a href="{{ route('cliente.edit', $cliente->id) }}">Editar Cliente</a></li>
+            <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Eliminar Cliente</button>
+            </form></li>
         </ul>
     @endforeach
 </body>

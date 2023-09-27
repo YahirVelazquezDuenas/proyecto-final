@@ -22,6 +22,11 @@
         
             <button type="submit">Guardar cambios</button><br><br>
         </form>
+        <form action="{{ route('compras.destroy', $compras->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Eliminar Compra</button>
+        </form>
         <a href="{{ url('/compras') }}">Volver a la lista de compras</a>
     </body>
 </html>

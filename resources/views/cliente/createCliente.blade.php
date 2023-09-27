@@ -36,7 +36,7 @@
         <br>
         <h3>Teléfono</h3>
             <label for="telefono">Teléfono:</label>
-            <input type="text" id="telefono" name="telefono" placeholder="Telefono" required pattern=".{10,}"><em><strong>No se permiten menos de diez digitos</strong></em>>
+            <input type="text" id="telefono" name="telefono" placeholder="Telefono" required pattern=".{10,}"><em><strong>No se permiten menos de diez digitos</strong></em>
         <br>
         <h3>Correo</h3>
             <label for="correo">Correo:</label>
