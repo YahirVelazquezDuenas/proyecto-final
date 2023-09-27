@@ -12,6 +12,11 @@
             {{ session('error') }}
         </div>
     @endif
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <h3>Comprar:</h3>
     <a href="{{ url('/compras/create') }}">Hacer una nueva compra.</a>
         <br>
@@ -29,7 +34,13 @@
             <li>ID: {{ $compras->id }}
             <br>Fecha: {{ $compras->fecha }}
             <br>Método: {{ $compras->metodo }}
-            <br>Total: {{ $compras->total }}</li>
+            <br>Total: {{ $compras->total }}
+            <br><a href="{{ route('compras.edit', $compras->id) }}">Editar Compra</a></li>
+            <form action="{{ route('compras.destroy', $compras->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Eliminar Compra</button>
+            </form>
         </ul>
     @endforeach
 </body>
