@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Editar aceite</h1>
-        <form action="{{ route('aceite.update', $cliente->id) }}" method="POST">
+        <form action="{{ route('aceite.update', $aceite->id) }}" method="POST">
             @csrf
             @method('PUT')
         
@@ -36,7 +36,7 @@
             <button type="submit">Guardar cambios</button><br><br>
         </form>
         <a href="{{ url('/aceite') }}">Volver a encabezado de aceite.</a>            
-        <form action="{{ route('aceite.destroy', $cliente->id) }}" method="POST">
+        <form action="{{ route('aceite.destroy', $aceite->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit">Eliminar Aceite</button>
