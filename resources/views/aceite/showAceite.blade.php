@@ -13,6 +13,11 @@
         <p><strong>Cantidad de Aceite:</strong> {{ $aceite->cantidad }}</p>
         <p><strong>Marca de Aceite:</strong> {{ $aceite->marca }}</p>
         <p><strong>Descripción de Aceite:</strong> {{ $aceite->descripcion }}</p>
+        <a href="{{ route('aceite.edit', $aceite->id) }}">Editar Aceite</a></li>
+            <form action="{{ route('aceite.destroy', $aceite->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Eliminar Aceite</button>
     <a href="{{ url('/aceite') }}">Volver a la lista de aceites</a>
 </body>
 </html>
