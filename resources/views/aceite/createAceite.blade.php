@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Aceite</title>
+    <title>Crear Aceites</title>
 </head>
 <body>
     <h1>Registro de aceites</h1>
