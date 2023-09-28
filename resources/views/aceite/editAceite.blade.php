@@ -3,11 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Editar aceite</title>
+        <title>Editar aceites</title>
     </head>
     <body>
-        <h1>Editar aceite</h1>
-        <form action="{{ route('aceite.update', $aceite->id) }}" method="POST">
+        <h1>Editar aceites</h1>
+        <form action="{{ route('aceite.update', $cliente->id) }}" method="POST">
             @csrf
             @method('PUT')
         
