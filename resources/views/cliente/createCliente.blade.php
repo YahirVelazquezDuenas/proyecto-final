@@ -31,12 +31,12 @@
             <label for="femenino">
             <input type="radio" id="femenino" name="genero" value="femenino">Femenino</label>
         <br>    
-            <label for="especifique">Especifique:</label>
+            <label for="especifique">Otro:</label>
             <input type="text" id="especifique" name="especifique" placeholder="Especifique su género">
         <br>
         <h3>Teléfono</h3>
             <label for="telefono">Teléfono:</label>
-            <input type="text" id="telefono" name="telefono" placeholder="Telefono" required pattern=".{10,}"><em><strong>No se permiten menos de diez digitos</strong></em>
+            <input type="text" id="telefono" name="telefono" placeholder="Teléfono" required pattern=".{10,}"><em><strong>No se permiten menos de diez digitos</strong></em>
         <br>
         <h3>Correo</h3>
             <label for="correo">Correo:</label>

@@ -3,58 +3,62 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Free Bulma template</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> -->
+    <title>Inicio de sesión</title>
+    <link rel="icon" type="image/x-icon" href="/img/elma.ico" />
+    <link rel="stylesheet" href="{{ asset('css/login.class') }}">
     <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
-    <!-- Bulma Version 0.9.x-->
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
 </head>
-
 <body>
     <section class="hero is-success is-fullheight">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-black">Login</h3>
+                    <h1>Inicio de sesión</h1>
                     <hr class="login-hr">
-                    <p class="subtitle has-text-black">Please login to proceed.</p>
+                    <p class="subtitle has-text-black">Por favor ingrese sus datos</p>
                     <div class="box">
                         <figure class="avatar">
-                            <img src="https://via.placeholder.com/150">
+                            <img src="/img/icono.png" alt="Icono">
                         </figure>
                         <form>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="email" placeholder="Your Email" autofocus="">
+                                    <input class="input is-large" type="email" placeholder="Correo:" autofocus="">
                                 </div>
                             </div>
-
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="password" placeholder="Your Password">
+                                    <input class="input is-large" type="password" placeholder="Contraseña:">
                                 </div>
                             </div>
                             <div class="field">
                                 <label class="checkbox">
-                  <input type="checkbox">
-                  Remember me
-                </label>
+                                <input type="checkbox"> Recordarme</label>
                             </div>
-                            <button class="button is-block is-info is-large is-fullwidth">Login <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                            <a href="{{ url('../') }}" class="button is-block is-info is-large is-fullwidth">
+                                Conectarse
+                            </a>
+                            <br><br>
+                            <div>
+                            <input class="button is-block is-danger is-large is-fullwidth" type="reset" value="Limpiar datos">
+                            </div>
                         </form>
+                            <br>
+                            <p class="has-text-purple">
+                            <a href="{{ url('/cliente') }}">Registrar</a> &nbsp;·&nbsp;
+                            <a href="../">Olvidé mi contraseña</a> &nbsp;·&nbsp;
+                            <a href="../">Ayuda</a>
+                            </p>
                     </div>
-                    <p class="has-text-grey">
-                        <a href="../">Sign Up</a> &nbsp;·&nbsp;
-                        <a href="../">Forgot Password</a> &nbsp;·&nbsp;
-                        <a href="../">Need Help?</a>
-                    </p>
                 </div>
             </div>
         </div>
+            <div class="derechos">
+                <p style="text-align: center;"><strong>&copy; 2023 Nuestro equipo. Todos los derechos reservados.</strong></p>
+            </div>
     </section>
     <script async type="text/javascript" src="../js/bulma.js"></script>
 </body>

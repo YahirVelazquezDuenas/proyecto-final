@@ -27,6 +27,9 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 });
+Route::get('/registro', function () {
+    return view('registro');
+});
 Route::post('/aceite', 'AceiteController@store')->name('createAceite');
 Route::post('/cliente', 'ClienteController@store')->name('createCliente');
 Route::post('/compras', 'ComprasController@store')->name('createCompras');
