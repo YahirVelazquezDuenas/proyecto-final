@@ -48,7 +48,7 @@
                         </form>
                             <br>
                             <p class="has-text-purple">
-                            <a href="{{ url('/cliente') }}">Registrar</a> &nbsp;·&nbsp;
+                            <a href="{{ url('/cliente/create') }}">Registrar</a> &nbsp;·&nbsp;
                             <a href="../">Olvidé mi contraseña</a> &nbsp;·&nbsp;
                             <a href="../">Ayuda</a>
                             </p>

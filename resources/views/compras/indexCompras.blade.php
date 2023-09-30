@@ -7,9 +7,9 @@
 </head>
 <body>
     <h1>Lista de compras</h1>
-    @if(session('error'))
+    @if(session('errorc'))
         <div class="alert alert-danger">
-            {{ session('error') }}
+            {{ session('errorc') }}
         </div>
     @endif
     @if(session('success'))

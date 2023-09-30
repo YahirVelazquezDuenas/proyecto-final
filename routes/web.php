@@ -3,6 +3,7 @@
 use App\Http\Controllers\AceiteController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ComprasController;
+use App\Http\Controllers\WelcomeController;
 use App\Models\Aceite;
 use App\Models\Cliente;
 use App\Models\Compras;
@@ -21,14 +22,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
 Route::get('/login', function () {
     return view('login');
-});
-Route::get('/registro', function () {
-    return view('registro');
 });
 Route::post('/aceite', 'AceiteController@store')->name('createAceite');
 Route::post('/cliente', 'ClienteController@store')->name('createCliente');

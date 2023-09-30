@@ -31,19 +31,27 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        $usuariounique = Cliente::where('usuario', $request->usuario)->first();
+        if ($usuariounique) {
+            return redirect()->back()->with('error', 'El nombre de usuario ya está registrado. Por favor, intenta con un nombre diferente.');
+        }
+        $passwordunique = Cliente::where('contraseña', $request->contraseña)->first();
+        if ($passwordunique) {
+            return redirect()->back()->with('error', 'La contraseña ya está registrada. Por favor, intenta con una diferente.');
+        }
         $request->validate([
             'nombre' => 'required|string',
             'direccion' => 'required|string',
-            'genero' => 'required|string',
-            'telefono' => 'required|numeric',
+            'usuario' => 'required|string',
+            'telefono' => 'required|string',
             'correo' => 'required|email',
             'contraseña' => 'required|string',
-            'comentario' => 'required|string',
+            'comentario' => 'nullable|string',
         ]);
         $cliente = new Cliente();
         $cliente->nombre = $request->nombre;
         $cliente->direccion = $request->direccion;
-        $cliente->genero = $request->genero;
+        $cliente->usuario = $request->usuario;
         $cliente->telefono = $request->telefono;
         $cliente->correo = $request->correo;
         $cliente->contraseña = $request->contraseña;
@@ -85,14 +93,22 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $usuariounique = Cliente::where('usuario', $request->usuario)->first();
+        if ($usuariounique) {
+            return redirect()->back()->with('error', 'El nombre de usuario ya está registrado. Por favor, intenta con un nombre diferente.');
+        }
+        $passwordunique = Cliente::where('contraseña', $request->contraseña)->first();
+        if ($passwordunique) {
+            return redirect()->back()->with('error', 'La contraseña ya está registrada. Por favor, intenta con una diferente.');
+        }
         $request->validate([
             'nombre' => 'required|string',
             'direccion' => 'required|string',
-            'genero' => 'required|string',
-            'telefono' => 'required|numeric',
+            'usuario' => 'required|string',
+            'telefono' => 'required|string',
             'correo' => 'required|email',
             'contraseña' => 'required|string',
-            'comentario' => 'required|string',
+            'comentario' => 'string',
         ]);
     
         $cliente = Cliente::find($id);
@@ -103,7 +119,7 @@ class ClienteController extends Controller
                 
         $cliente->nombre = $request->nombre;
         $cliente->direccion = $request->direccion;
-        $cliente->genero = $request->genero;
+        $cliente->usuario = $request->usuario;
         $cliente->telefono = $request->telefono;
         $cliente->correo = $request->correo;
         $cliente->contraseña = $request->contraseña;

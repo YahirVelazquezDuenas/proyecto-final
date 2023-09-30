@@ -55,7 +55,7 @@ class ComprasController extends Controller
         $compra = Compras::find($id);
             
         if (!$compra) {
-            return redirect()->back()->with('error', 'La compra no se encontró.');
+            return redirect()->back()->with('errorc', 'La compra no se encontró.');
         }
 
         return view('/compras/showCompras', ['compra' => $compra]);

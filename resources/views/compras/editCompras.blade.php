@@ -10,15 +10,30 @@
         <form action="{{ route('compras.update', $compras->id) }}" method="POST">
             @csrf
             @method('PUT')
-        
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <label for="fecha">Fecha de compra:</label>
-            <input type="date" id="fecha" name="fecha" value="{{ $compras->fecha }}"><br><br>
+            <input type="date" id="fecha" name="fecha" value="{{ $compras->fecha }}" required><br><br>
         
-            <label for="metodo">Método de pago:</label>
-            <input type="text" id="metodo" name="metodo" value="{{ $compras->metodo }}"><br><br>
-        
-            <label for="total">Total a pagar:</label>
-            <input type="text" id="total" name="total" value="{{ $compras->total }}"><br><br>
+            <h3>Método</h3>
+            <div>
+                <input type="radio" id="efectivo" name="metodo" value="efectivo" {{ $compras->metodo === 'efectivo' ? 'checked' : '' }}>
+                <label for="efectivo">Efectivo</label>
+            </div>
+            <div>
+                <input type="radio" id="deposito" name="metodo" value="deposito" {{ $compras->metodo === 'deposito' ? 'checked' : '' }}>
+                <label for="deposito">Depósito</label>
+            </div>
+            <div>
+                <input type="radio" id="tarjeta" name="metodo" value="tarjeta" {{ $compras->metodo === 'tarjeta' ? 'checked' : '' }}>
+                <label for="tarjeta">Tarjeta</label>
+            </div>
+
+            <label for="total">Total a pagar: $</label>
+            <input type="text" id="total" name="total" placeholder="1222.99" value="{{ $compras->total}}" required pattern="^\d{1,8}(\.\d{1,2})?$"><br><br>
         
             <button type="submit">Guardar cambios</button><br><br>
         </form>

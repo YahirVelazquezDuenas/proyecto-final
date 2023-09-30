@@ -14,17 +14,32 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <h3>Fecha</h3>
             <label for="fecha">Fecha de compra:</label>
-            <input type="date" id="fecha" name="fecha" placeholder="">
+            <input type="date" id="fecha" name="fecha" placeholder="" required>
         <br>
         <h3>Método</h3>
-            <label for="metodo">Método de pago:</label>
-            <input type="text" id="metodo" name="metodo" placeholder="Método">
+        <div>
+            <input type="radio" id="efectivo" name="metodo" value="efectivo" checked>
+            <label for="efectivo">Efectivo</label>
+        </div>
+        <div>
+            <input type="radio" id="deposito" name="metodo" value="deposito">
+            <label for="deposito">Depósito</label>
+        </div>
+        <div>
+            <input type="radio" id="tarjeta" name="metodo" value="tarjeta">
+            <label for="tarjeta">Tarjeta</label>
+        </div>
         <br>
         <h3>Total</h3>
-            <label for="total">Total a pagar:</label>
-            <input type="text" id="total" name="total" placeholder="total">
+            <label for="total">Total a pagar: $</label>
+            <input type="text" id="total" name="total" placeholder="1222.99" required pattern="^\d{1,8}(\.\d{1,2})?$">
         <br>
         <h3>Enviar</h3>
             <label for="enviar">Enviar:</label>

@@ -10,7 +10,7 @@
         <p><strong>ID del Cliente:</strong> {{ $cliente->id }}</p>
         <p><strong>Nombre del Cliente:</strong> {{ $cliente->nombre }}</p>
         <p><strong>Dirección del Cliente:</strong> {{ $cliente->direccion }}</p>
-        <p><strong>Género del Cliente:</strong> {{ $cliente->genero }}</p>
+        <p><strong>Usuario del Cliente:</strong> {{ $cliente->usuario }}</p>
         <p><strong>Télefono del Cliente:</strong> {{ $cliente->telefono }}</p>
         <p><strong>Correo del Cliente:</strong> {{ $cliente->correo }}</p>
         <p><strong>Contraseña del Cliente:</strong> {{ $cliente->contraseña }}</p>

@@ -31,13 +31,18 @@ class AceiteController extends Controller
      */
     public function store(Request $request)
     {
+        $nombreunique = Aceite::where('nombre', $request->nombre)->first();
+        if ($nombreunique) {
+            return redirect()->back()->with('error', 'El nombre de aceite ya está registrado. Por favor, intenta con un nombre diferente.');
+        }
         $request->validate([
             'nombre' => 'required|string',
-            'tipo' => 'required|string',
-            'cantidad' => 'required|numeric',
-            'marca' => 'required|string',
-            'descripcion' => 'required|string',
+            'tipo' => 'nullable|string',
+            'cantidad' => 'nullable|numeric',
+            'marca' => 'nullable|string',
+            'descripcion' => 'nullable|string',
         ]);
+
         $aceite = new Aceite();
         $aceite->nombre = $request->nombre;
         $aceite->tipo = $request->tipo;
@@ -45,7 +50,7 @@ class AceiteController extends Controller
         $aceite->marca = $request->marca;
         $aceite->descripcion = $request->descripcion;
         $aceite->save();
-        return redirect('/aceite');
+        return redirect('/aceite')->with('success', 'Aceite registrado correctamente.');
     }
 
     /**
@@ -81,12 +86,16 @@ class AceiteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $nombreunique = Aceite::where('nombre', $request->nombre)->first();
+        if ($nombreunique) {
+            return redirect()->back()->with('error', 'El nombre ya está registrado. Por favor, intenta con un nombre diferente.');
+        }
         $request->validate([
             'nombre' => 'required|string',
-            'tipo' => 'required|string',
-            'cantidad' => 'required|numeric',
-            'marca' => 'required|string',
-            'descripcion' => 'required|string',
+            'tipo' => 'nullable|string',
+            'cantidad' => 'nullable|numeric',
+            'marca' => 'nullable|string',
+            'descripcion' => 'nullable|string',
         ]);
         $aceite = Aceite::find($id);
     

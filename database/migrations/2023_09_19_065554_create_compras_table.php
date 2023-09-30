@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
-            $table->string('metodo');
-            $table->float('total');
+            $table->date('fecha')->nullable(false);
+            $table->string('metodo')->nullable(false);
+            $table->float('total')->nullable(false);
             $table->timestamps();
         });
     }

@@ -35,12 +35,12 @@
             <li>ID: {{ $cliente->id }}
             <br>Nombre: {{ $cliente->nombre }}
             <br>Dirección: {{ $cliente->direccion }}
-            <br>Género: {{ $cliente->genero }}
+            <br>Usuario: {{ $cliente->usuario }}
             <br>Teléfono: {{ $cliente->telefono }}
             <br>Correo: {{ $cliente->correo }}
             <br>Contraseña: {{ $cliente->contraseña }}
             <br>Comentario: {{ $cliente->comentario }}
-            <br><a href="{{ route('cliente.edit', $cliente->id) }}">Editar Cliente</a></li>
+            <br><a href="{{ route('cliente.edit', $cliente->id) }}">Editar Cliente</a>
             <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
