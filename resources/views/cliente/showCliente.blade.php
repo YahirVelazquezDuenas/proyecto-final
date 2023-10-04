@@ -3,18 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/showCliente.css') }}">
     <title>Cliente encontrado</title>
 </head>
 <body>
     <h1>Cliente encontrado</h1>
-        <p><strong>ID del Cliente:</strong> {{ $cliente->id }}</p>
-        <p><strong>Nombre del Cliente:</strong> {{ $cliente->nombre }}</p>
-        <p><strong>Dirección del Cliente:</strong> {{ $cliente->direccion }}</p>
-        <p><strong>Usuario del Cliente:</strong> {{ $cliente->usuario }}</p>
-        <p><strong>Télefono del Cliente:</strong> {{ $cliente->telefono }}</p>
-        <p><strong>Correo del Cliente:</strong> {{ $cliente->correo }}</p>
-        <p><strong>Contraseña del Cliente:</strong> {{ $cliente->contraseña }}</p>
-        <p><strong>Comentario del Cliente:</strong> {{ $cliente->comentario }}</p>
+    <table>
+    <tr>
+        <th>ID del Cliente</th>
+        <td>{{ $cliente->id }}</td>
+    </tr>
+    <tr>
+        <th>Nombre del Cliente</th>
+        <td>{{ $cliente->nombre }}</td>
+    </tr>
+    <tr>
+        <th>Dirección del Cliente</th>
+        <td>{{ $cliente->direccion }}</td>
+    </tr>
+    <tr>
+        <th>Usuario del Cliente</th>
+        <td>{{ $cliente->usuario }}</td>
+    </tr>
+    <tr>
+        <th>Teléfono del Cliente</th>
+        <td>{{ $cliente->telefono }}</td>
+    </tr>
+    <tr>
+        <th>Correo del Cliente</th>
+        <td>{{ $cliente->correo }}</td>
+    </tr>
+    <tr>
+        <th>Contraseña del Cliente</th>
+        <td>{{ $cliente->contraseña }}</td>
+    </tr>
+    <tr>
+        <th>Comentario del Cliente</th>
+        <td>{{ $cliente->comentario }}</td>
+    </tr>
+</table>
         <a href="{{ route('cliente.edit', $cliente->id) }}">Editar Cliente</a></li>
             <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
                 @csrf

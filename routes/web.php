@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
-Route::get('/login', function () {
+Route::get('/singup', function () {
     return view('login');
 });
 Route::post('/aceite', 'AceiteController@store')->name('createAceite');
@@ -47,3 +47,13 @@ Route::put('/compras/{id}', 'ComprasController@update')->name('updateCompras');
 Route::delete('/compras/{id}', 'ComprasController@destroy')->name('destroyCompras');
 
 
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

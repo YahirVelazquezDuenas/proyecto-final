@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/indexCliente.css') }}">
     <title>Principal de cliente</title>
 </head>
 <body>
@@ -32,14 +33,44 @@
     <h3>Clientes registrados:</h3>
     @foreach ($clienteIndex as $cliente)
         <ul>
-            <li>ID: {{ $cliente->id }}
-            <br>Nombre: {{ $cliente->nombre }}
-            <br>Dirección: {{ $cliente->direccion }}
-            <br>Usuario: {{ $cliente->usuario }}
-            <br>Teléfono: {{ $cliente->telefono }}
-            <br>Correo: {{ $cliente->correo }}
-            <br>Contraseña: {{ $cliente->contraseña }}
-            <br>Comentario: {{ $cliente->comentario }}
+            <table>
+                <tr>
+                    <th>Atributo</th>
+                    <th>Valor</th>
+                </tr>
+                <tr>
+                    <td>ID:</td>
+                    <td>{{ $cliente->id }}</td>
+                </tr>
+                <tr>
+                    <td>Nombre:</td>
+                    <td>{{ $cliente->nombre }}</td>
+                </tr>
+                <tr>
+                    <td>Dirección:</td>
+                    <td>{{ $cliente->direccion }}</td>
+                </tr>
+                <tr>
+                    <td>Usuario:</td>
+                    <td>{{ $cliente->usuario }}</td>
+                </tr>
+                <tr>
+                    <td>Teléfono:</td>
+                    <td>{{ $cliente->telefono }}</td>
+                </tr>
+                <tr>
+                    <td>Correo:</td>
+                    <td>{{ $cliente->correo }}</td>
+                </tr>
+                <tr>
+                    <td>Contraseña:</td>
+                    <td>{{ $cliente->contraseña }}</td>
+                </tr>
+                <tr>
+                    <td>Comentario:</td>
+                    <td>{{ $cliente->comentario }}</td>
+                </tr>
+            </table>
             <br><a href="{{ route('cliente.edit', $cliente->id) }}">Editar Cliente</a>
             <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
                 @csrf
