@@ -1,0 +1,63 @@
+html,body {
+    font-family: 'Questrial', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.hero.is-success {
+    background-image: url('/img/tatsumaki.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.hero .nav, .hero.is-success .nav {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.box {
+    margin-top: 0;
+}
+
+input {
+    font-weight: 300;
+}
+
+p {
+    font-weight: 700;
+    
+}
+    
+p.subtitle {
+    padding-top: 1rem;
+    font-size: 20px;
+}
+
+.login-hr {
+    border-bottom: 1px solid green;
+}
+    
+.field {
+    padding-bottom: 8px;
+}
+
+.fa {
+    margin-left: 5px;
+}
+
+.field input::placeholder {
+    color: black;
+    font-size: 18px;
+}
+
+.field label.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.has-text-purple {
+    color:purple;
+    font-size: 15px;
+}

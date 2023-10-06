@@ -2,54 +2,18 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/img/fatla.ico" />
     <title>Admin - Free Bulma template</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/welcome.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <!-- Bulma Version 0.9.0-->
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/admin.css">
 </head>
 
 <body>
-    <!-- START NAV -->
-    <nav class="navbar is-white">
-        <div class="container">
-            <div class="navbar-brand">
-                <a class="navbar-item brand-text" href="/login">
-          Login
-        </a>
-                <div class="navbar-burger burger" data-target="navMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div id="navMenu" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item" href="/">
-            Presentación
-          </a>
-                    <a class="navbar-item" href="#">
-            Admin
-          </a>
-                    <a class="navbar-item" href="/aceite">
-            Aceites
-          </a>
-                    <a class="navbar-item" href="/cliente">
-            Clientes
-          </a>
-                                 <a class="navbar-item" href="/compras">
-            Compras
-          </a>
-                </div>
-
-            </div>
-        </div>
-    </nav>
-    <!-- END NAV -->
+    <x-barra></x-barra>
     <div class="container">
         <div class="columns">
             <div class="column is-3 ">
@@ -59,8 +23,7 @@
                     </p>
                     <ul class="menu-list">
                         <li><a class="is-active" href="/">Admin</a></li>
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/">Presentación</a></li>
+                        <li><a href="/singup">Login</a></li>
                     </ul>
                     <p class="menu-label">
                         Aceites
@@ -90,7 +53,7 @@
                     <div class="hero-body">
                         <div class="container">
                             <h1 class="title">
-                                Buenas, Admin.
+                                Buenas Sr. Inge.
                             </h1>
                             <h2 class="subtitle">
                                 Las ventas van bien el día de hoy!
@@ -125,8 +88,7 @@
                             </article>
                         </div>
                     </div>
-                </section>
-     <!-- START NAV -->  
+                </section> 
             <div class="columns"> 
                 <div class="column is-6">        
                     <div class="card">
@@ -196,5 +158,6 @@
         </div>
     </div>
     <script async type="text/javascript" src="../js/bulma.js"></script>
+    <x-derechos></x-derechos>
 </body>
 </html>

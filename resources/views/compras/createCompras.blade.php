@@ -6,19 +6,21 @@
     <title>Crear Compra</title>
 </head>
 <body>
-    <h1>Registro de compras</h1>
-    <form action="{{ url('/compras') }}" method="POST"> 
-        @csrf
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
+<section class="hero is-success is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <h1 class="title">Registro de compras</h1>
+                    <hr class="login-hr">
+                    <p class="subtitle has-text-white">Ingresa los datos</p>
+                    <div class="box">
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif 
+                        <form action="{{ url('/aceite') }}" method="POST"> 
+                        @csrf
         <h3>Fecha</h3>
             <label for="fecha">Fecha de compra:</label>
             <input type="date" id="fecha" name="fecha" placeholder="" required>

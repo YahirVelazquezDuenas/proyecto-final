@@ -23,7 +23,7 @@ h1 {
 }
 
 .box {
-    margin-top: 5rem;
+    margin-top: 0;
 }
 
 input {
@@ -37,11 +37,15 @@ p {
     
 p.subtitle {
     padding-top: 1rem;
+    font-size: 20px;
+}
+
+.has-text-white {
     color: white;
 }
-    
+
 .login-hr {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid purple;
 }
     
 .field {
@@ -67,12 +71,3 @@ p.subtitle {
     color:purple;
     font-size: 15px;
 }
-
-.box {
-    margin-top: 0;
-}
-
-.derechos {
-    color: black;
-    font-style: italic;
-  }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +12,7 @@
 </head>
 <body>
     <section class="hero is-success is-fullheight">
+    <x-barra></x-barra> 
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
@@ -43,24 +43,19 @@
                             </a>
                             <br><br>
                             <div>
-                            <input class="button is-block is-danger is-large is-fullwidth" type="reset" value="Limpiar datos">
+                            <input class="button is-block is-primary is-large is-fullwidth" type="reset" value="Limpiar datos">
                             </div>
                         </form>
                             <br>
                             <p class="has-text-purple">
-                            <a href="{{ url('/cliente/create') }}">Registrar</a> &nbsp;·&nbsp;
-                            <a href="../">Olvidé mi contraseña</a> &nbsp;·&nbsp;
-                            <a href="../">Ayuda</a>
+                                <a href="../">Inicio</a> &nbsp;·&nbsp;
+                                <a href="/cliente/create">Registrar</a>
                             </p>
                     </div>
                 </div>
             </div>
         </div>
-            <div class="derechos">
-                <p style="text-align: center;"><strong>&copy; 2023 Nuestro equipo. Todos los derechos reservados.</strong></p>
-            </div>
+        <x-derechos></x-derechos>
     </section>
-    <script async type="text/javascript" src="../js/bulma.js"></script>
 </body>
-
 </html>
