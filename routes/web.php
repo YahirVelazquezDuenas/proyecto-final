@@ -4,11 +4,13 @@ use App\Http\Controllers\AceiteController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\UserController;
 use App\Models\Aceite;
 use App\Models\Cliente;
 use App\Models\Compras;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthenticatedSessionController;
 
 
 /*
@@ -21,12 +23,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-
-Route::get('/singup', function () {
-    return view('login');
-});
+Route::get('/signup', [UserController::class, 'showSignupForm'])->name('signup.form');
+Route::post('/signup', [UserController::class, 'registerUser'])->name('registro.usuario');
 Route::post('/aceite', 'AceiteController@store')->name('createAceite');
 Route::post('/cliente', 'ClienteController@store')->name('createCliente');
 Route::post('/compras', 'ComprasController@store')->name('createCompras');
@@ -45,15 +43,10 @@ Route::delete('/cliente/{id}', 'ClienteController@destroy')->name('destroyClient
 Route::get('/compras/{id}/edit', 'ComprasController@edit')->name('editCompras');
 Route::put('/compras/{id}', 'ComprasController@update')->name('updateCompras');
 Route::delete('/compras/{id}', 'ComprasController@destroy')->name('destroyCompras');
-
-
-
+Route::post('/logout', [UserController::class, 'destroy'])->name('logout');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+    Route::get('/dashboard', [WelcomeController::class, 'index'])->name('welcome');});

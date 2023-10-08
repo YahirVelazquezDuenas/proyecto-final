@@ -25,32 +25,22 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <form action="{{ url('/cliente') }}" method="POST">
+                        <form action="{{ route('registro.usuario') }}" method="POST">
                             @csrf
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Pedro Castro Salcedo"
+                                    <input class="input is-large" type="text" id="name" name="name" placeholder="Nombre: Pedro Castro Salcedo"
                                         autofocus="" required pattern="^.{1,49}$">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="direccion" name="direccion" placeholder="Dirección: Av. Sim 9877-21. Col. Pachín." required pattern="^.{1,100}$">
+                                    <input class="input is-large" type="text" id="email" name="email" placeholder="Correo: pedro@hotmail.com" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="telefono" name="telefono" placeholder="Teléfono: +52 33 1248 9772" required pattern="^(\+\d{2}\s?)?(\(?\d{3}\)?[\s.-]?)?\d{3}[\s.-]?\d{4}(\s?ext\s?\d+)?$"><em><strong>No se permiten menos de diez digitos</strong></em>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Traer trompa de cochino." pattern="^.{0,254}$">
+                                    <input class="input is-large" type="text" id="password" name="password" placeholder="Contraseña: pedtgi6" required pattern="^.{6,10}$"><em><strong>Entre 6 y 10 caracteres</strong></em>
                                 </div>
                             </div>
                             <div class="field">

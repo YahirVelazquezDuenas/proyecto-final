@@ -31,30 +31,18 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $usuariounique = Cliente::where('usuario', $request->usuario)->first();
-        if ($usuariounique) {
-            return redirect()->back()->with('error', 'El nombre de usuario ya está registrado. Por favor, intenta con un nombre diferente.');
-        }
-        $passwordunique = Cliente::where('contraseña', $request->contraseña)->first();
-        if ($passwordunique) {
-            return redirect()->back()->with('error', 'La contraseña ya está registrada. Por favor, intenta con una diferente.');
-        }
         $request->validate([
             'nombre' => 'required|string',
             'direccion' => 'required|string',
-            'usuario' => 'required|string',
             'telefono' => 'required|string',
             'correo' => 'required|email',
-            'contraseña' => 'required|string',
             'comentario' => 'nullable|string',
         ]);
         $cliente = new Cliente();
         $cliente->nombre = $request->nombre;
         $cliente->direccion = $request->direccion;
-        $cliente->usuario = $request->usuario;
         $cliente->telefono = $request->telefono;
         $cliente->correo = $request->correo;
-        $cliente->contraseña = $request->contraseña;
         $cliente->comentario = $request->comentario;
         $cliente->save();
         return redirect('/cliente');
@@ -93,14 +81,6 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usuariounique = Cliente::where('usuario', $request->usuario)->first();
-        if ($usuariounique) {
-            return redirect()->back()->with('error', 'El nombre de usuario ya está registrado. Por favor, intenta con un nombre diferente.');
-        }
-        $passwordunique = Cliente::where('contraseña', $request->contraseña)->first();
-        if ($passwordunique) {
-            return redirect()->back()->with('error', 'La contraseña ya está registrada. Por favor, intenta con una diferente.');
-        }
         $request->validate([
             'nombre' => 'required|string',
             'direccion' => 'required|string',
@@ -119,10 +99,8 @@ class ClienteController extends Controller
                 
         $cliente->nombre = $request->nombre;
         $cliente->direccion = $request->direccion;
-        $cliente->usuario = $request->usuario;
         $cliente->telefono = $request->telefono;
         $cliente->correo = $request->correo;
-        $cliente->contraseña = $request->contraseña;
         $cliente->comentario = $request->comentario;
         $cliente->save();
 

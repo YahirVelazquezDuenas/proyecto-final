@@ -46,20 +46,12 @@
                     <td>{{ $cliente->direccion }}</td>
                 </tr>
                 <tr>
-                    <td>Usuario:</td>
-                    <td>{{ $cliente->usuario }}</td>
-                </tr>
-                <tr>
                     <td>Teléfono:</td>
                     <td>{{ $cliente->telefono }}</td>
                 </tr>
                 <tr>
                     <td>Correo:</td>
                     <td>{{ $cliente->correo }}</td>
-                </tr>
-                <tr>
-                    <td>Contraseña:</td>
-                    <td>{{ $cliente->contraseña }}</td>
                 </tr>
                 <tr>
                     <td>Comentario:</td>

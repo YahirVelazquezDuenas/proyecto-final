@@ -22,20 +22,12 @@
         <td>{{ $cliente->direccion }}</td>
     </tr>
     <tr>
-        <th>Usuario del Cliente</th>
-        <td>{{ $cliente->usuario }}</td>
-    </tr>
-    <tr>
         <th>Teléfono del Cliente</th>
         <td>{{ $cliente->telefono }}</td>
     </tr>
     <tr>
         <th>Correo del Cliente</th>
         <td>{{ $cliente->correo }}</td>
-    </tr>
-    <tr>
-        <th>Contraseña del Cliente</th>
-        <td>{{ $cliente->contraseña }}</td>
     </tr>
     <tr>
         <th>Comentario del Cliente</th>
