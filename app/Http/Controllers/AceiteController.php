@@ -31,16 +31,21 @@ class AceiteController extends Controller
      */
     public function store(Request $request)
     {
-        $nombreunique = Aceite::where('nombre', $request->nombre)->first();
-        if ($nombreunique) {
-            return redirect()->back()->with('error', 'El nombre de aceite ya está registrado. Por favor, intenta con un nombre diferente.');
-        }
+
         $request->validate([
-            'nombre' => 'required|string',
+            'nombre' => 'required|string|unique:aceites',
             'tipo' => 'nullable|string',
             'cantidad' => 'nullable|numeric',
             'marca' => 'nullable|string',
             'descripcion' => 'nullable|string',
+        ], [
+            'nombre.required' => 'El campo nombre es obligatorio.',
+            'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
+            'nombre.unique' => 'El nombre ya está en uso.',
+            'tipo.string' => 'El campo tipo debe ser una cadena de texto.',
+            'cantidad.numeric' => 'El campo cantidad debe ser un número.',
+            'marca.string' => 'El campo marca debe ser una cadena de texto.',
+            'descripcion.string' => 'El campo descripción debe ser una cadena de texto.',
         ]);
 
         $aceite = new Aceite();
@@ -49,8 +54,11 @@ class AceiteController extends Controller
         $aceite->cantidad = $request->cantidad;
         $aceite->marca = $request->marca;
         $aceite->descripcion = $request->descripcion;
-        $aceite->save();
-        return redirect('/aceite')->with('success', 'Aceite registrado correctamente.');
+        if ($aceite->save()) {
+            return redirect('/aceite')->with('success', 'Aceite registrado correctamente.');
+        } else {
+            return redirect()->back()->withErrors(['Error al guardar el aceite. Por favor, intenta de nuevo.']);
+        }
     }
 
     /**
@@ -86,16 +94,25 @@ class AceiteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $nombreunique = Aceite::where('nombre', $request->nombre)->first();
-        if ($nombreunique) {
-            return redirect()->back()->with('error', 'El nombre ya está registrado. Por favor, intenta con un nombre diferente.');
-        }
         $request->validate([
-            'nombre' => 'required|string',
-            'tipo' => 'nullable|string',
-            'cantidad' => 'nullable|numeric',
-            'marca' => 'nullable|string',
-            'descripcion' => 'nullable|string',
+            'nombre' => 'required|string|unique:aceites|max:255',
+            'tipo' => 'nullable|string|max:255',
+            'cantidad' => 'nullable|numeric|max:999999.99',
+            'marca' => 'nullable|string|max:255',
+            'descripcion' => 'nullable|string|max:255',
+        ], [
+            'nombre.required' => 'El campo nombre es obligatorio.',
+            'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
+            'nombre.unique' => 'El nombre ya está en uso.',
+            'nombre.max'=>'El campo nombre no puede tener más de 255 caracteres',
+            'tipo.string' => 'El campo tipo debe ser una cadena de texto.',
+            'tipo.max'=>'El campo tipo no puede tener más de 255 caracteres',
+            'cantidad.numeric' => 'El campo cantidad debe ser un número.',
+            'cantidad.max'=>'El campo cantidad no puede ser mayor a 999,999.99',
+            'marca.string' => 'El campo marca debe ser una cadena de texto.',
+            'marca.max'=>'El campo marca no puede tener más de 255 caracteres',
+            'descripcion.string' => 'El campo descripción debe ser una cadena de texto.',
+            'descripcion.max'=>'El campo descripción no puede tener más de 255 caracteres',
         ]);
         $aceite = Aceite::find($id);
     

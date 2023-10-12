@@ -10,13 +10,14 @@
         <form action="{{ route('compras.update', $compras->id) }}" method="POST">
             @csrf
             @method('PUT')
+            <x-validation-errors :errors="$errors" class="mb-4" />
             @if(session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
             @endif
             <label for="fecha">Fecha de compra:</label>
-            <input type="date" id="fecha" name="fecha" value="{{ $compras->fecha }}" required><br><br>
+            <input type="date" id="fecha" name="fecha" value="{{ $compras->fecha }}"><br><br>
         
             <h3>Método</h3>
             <div>
@@ -33,7 +34,7 @@
             </div>
 
             <label for="total">Total a pagar: $</label>
-            <input type="text" id="total" name="total" placeholder="1222.99" value="{{ $compras->total}}" required pattern="^\d{1,8}(\.\d{1,2})?$"><br><br>
+            <input type="text" id="total" name="total" placeholder="1222.99" value="{{ $compras->total}}"><br><br>
         
             <button type="submit">Guardar cambios</button><br><br>
         </form>

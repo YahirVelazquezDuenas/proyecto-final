@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('direccion')->unique()->nullable(false);
             $table->string('telefono')->unique()->nullable(false);
             $table->string('correo')->unique()->nullable(false);
-            $table->string('comentario');
+            $table->string('comentario')->nullable();
             $table->timestamps();
         });
     }

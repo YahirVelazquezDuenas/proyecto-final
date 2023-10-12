@@ -35,6 +35,13 @@ class ComprasController extends Controller
             'fecha' => 'required|date',
             'metodo' => 'required|string',
             'total' => 'required|numeric',
+        ], [
+            'fecha.required' => 'El campo de fecha es obligatorio.',
+            'fecha.date' => 'El campo de fecha debe ser una fecha válida.',
+            'metodo.required' => 'El campo de método de pago es obligatorio.',
+            'metodo.string' => 'El campo de método de pago debe ser una cadena de texto.',
+            'total.required' => 'El campo de total es obligatorio.',
+            'total.numeric' => 'El campo de total debe ser un número.',
         ]);
 
         $compra = new Compras();
@@ -87,6 +94,13 @@ class ComprasController extends Controller
             'fecha' => 'required|date',
             'metodo' => 'required|string',
             'total' => 'required|numeric',
+        ], [
+            'fecha.required' => 'El campo de fecha es obligatorio.',
+            'fecha.date' => 'El campo de fecha debe ser una fecha válida.',
+            'metodo.required' => 'El campo de método de pago es obligatorio.',
+            'metodo.string' => 'El campo de método de pago debe ser una cadena de texto.',
+            'total.required' => 'El campo de total es obligatorio.',
+            'total.numeric' => 'El campo de total debe ser un número.',
         ]);
     
         $compras = Compras::find($id);

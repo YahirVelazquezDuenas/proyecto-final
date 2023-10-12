@@ -20,6 +20,7 @@
                     <hr class="login-hr">
                     <p class="subtitle has-text-white">Por favor ingrese sus datos</p>
                     <div class="box">
+                        <x-validation-errors :errors="$errors" class="mb-4" />
                         @if(session('error'))
                             <div class="alert alert-danger">
                                 {{ session('error') }}
@@ -30,27 +31,27 @@
                             <div class="field">
                                 <div class="control">
                                     <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Pedro Castro Salcedo"
-                                        autofocus="" required pattern="^.{1,49}$">
+                                        autofocus="" value="{{ old('nombre') }}">
                                 </div>
                             </div><br>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="direccion" name="direccion" placeholder="Dirección: Av. Sim 9877-21. Col. Pachín." required pattern="^.{1,100}$">
+                                    <input class="input is-large" type="text" id="direccion" name="direccion" placeholder="Dirección: Av. Sim 9877-21. Col. Pachín." value="{{ old('direccion') }}">
                                 </div>
                             </div><br>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="telefono" name="telefono" placeholder="Teléfono: +52 33 1248 9772" required pattern="^(\+\d{2}\s?)?(\(?\d{3}\)?[\s.-]?)?\d{3}[\s.-]?\d{4}(\s?ext\s?\d+)?$"><em><strong>No se permiten menos de diez digitos</strong></em>
+                                    <input class="input is-large" type="text" id="telefono" name="telefono" placeholder="Teléfono: +52 33 1248 9772" value="{{ old('telefono') }}"><em><strong>No se permiten menos de diez digitos</strong></em>
                                 </div>
                             </div><br>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                                    <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" value="{{ old('correo') }}">
                                 </div>
                             </div><br>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Traer trompa de cochino." pattern="^.{0,254}$">
+                                    <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Traer trompa de cochino." value="{{ old('comentario') }}">
                                 </div>
                             </div>
                             <div class="field">

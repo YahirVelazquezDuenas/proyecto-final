@@ -20,6 +20,7 @@
                     <hr class="login-hr">
                         <p class="subtitle has-text-white">Ingresa los datos</p>
                             <div class="box">
+                                <x-validation-errors :errors="$errors" class="mb-4" />
                                 @if(session('error'))
                                     <div class="alert alert-danger">
                                 {{ session('error') }}
@@ -29,26 +30,26 @@
                                 @csrf
                                     <div class="fecha">
                                         <label for="fecha">Fecha de compra:</label>
-                                        <input type="date" id="fecha" name="fecha" placeholder="" required>
+                                        <input type="date" id="fecha" name="fecha" placeholder="" value="{{ old('fecha') }}">
                                     </div><br>
                                     <div class="metodo">
                                         Método de pago
                                         <div>
-                                            <input type="radio" id="efectivo" name="metodo" value="efectivo" checked>
+                                            <input type="radio" id="efectivo" name="metodo" value="efectivo" {{ old('metodo') == 'efectivo' ? 'checked' : '' }}>
                                             <label for="efectivo">Efectivo</label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="deposito" name="metodo" value="deposito">
+                                            <input type="radio" id="deposito" name="metodo" value="deposito" {{ old('metodo') == 'deposito' ? 'checked' : '' }}>
                                             <label for="deposito">Depósito</label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="tarjeta" name="metodo" value="tarjeta">
+                                            <input type="radio" id="tarjeta" name="metodo" value="tarjeta" {{ old('metodo') == 'tarjeta' ? 'checked' : '' }}>
                                             <label for="tarjeta">Tarjeta</label>
                                         </div><br>
                                     </div>
                                     <div class="pagar">
                                         <label for="total">Total a pagar: $</label>
-                                        <input type="text" id="total" name="total" placeholder="1222.99" required pattern="^\d{1,8}(\.\d{1,2})?$">
+                                        <input type="text" id="total" name="total" placeholder="1222.99" value="{{ old('total') }}">
                                     </div><br><br>
                                     <div class="field">
                                         <div class="control">

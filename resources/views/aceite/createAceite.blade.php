@@ -20,42 +20,43 @@
                     <hr class="login-hr">
                     <p class="subtitle has-text-white">Ingresa los datos</p>
                     <div class="box">
+                    <x-validation-errors :errors="$errors" class="mb-4" />
                     @if(session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
                         </div>
-                        @endif
+                    @endif
                         <form action="{{ url('/aceite') }}" method="POST"> 
                         @csrf
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Diesel LSD"
-                                autofocus="" required pattern="^.{1,49}$">
+                                autofocus="" value="{{ old('nombre') }}">
                             </div>
                         </div>
                         <br>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="tipo" name="tipo" placeholder="Tipo: Diesel" pattern="^.{0,49}$">
+                                <input class="input is-large" type="text" id="tipo" name="tipo" placeholder="Tipo: Diesel" value="{{ old('tipo') }}">
                             </div>
                         </div>
                         <br>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="cantidad" name="cantidad" placeholder="Cantidad: 5200" pattern="^\d{1,8}(\.\d{1,2})?$">
+                                <input class="input is-large" type="text" id="cantidad" name="cantidad" placeholder="Cantidad: 5200" value="{{ old('cantidad') }}">
                             </div>
                         </div>
                         <br>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="marca" name="marca" placeholder="Marca: ACME" pattern="^.{0,49}$">
+                                <input class="input is-large" type="text" id="marca" name="marca" placeholder="Marca: ACME" value="{{ old('marca') }}">
                             </div>
                         </div>
                         <br>
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="descripcion" name="descripcion" placeholder="Descripción: Aceite para..." 
-                                rows="3" cols="40" pattern="^.{0,254}$">
+                                rows="3" cols="40" value="{{ old('descripcion') }}">
                             </div>
                         </div>
                         <br>

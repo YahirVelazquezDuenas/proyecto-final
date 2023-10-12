@@ -20,6 +20,7 @@
                     <hr class="login-hr">
                     <p class="subtitle has-text-white">Ingresa los nuevos datos</p>
                     <div class="box">
+                        <x-validation-errors :errors="$errors" class="mb-4" />
                     @if(session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
@@ -31,31 +32,31 @@
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Diesel LSD"
-                                autofocus="" value="{{$aceite->nombre}}" pattern="^.{1,49}$">
+                                autofocus="" value="{{$aceite->nombre}}">
                             </div>
                         </div>
                         <br>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="tipo" name="tipo" placeholder="Tipo: Diesel" value="{{$aceite->tipo}}" pattern="^.{1,49}$">
+                                <input class="input is-large" type="text" id="tipo" name="tipo" placeholder="Tipo: Diesel" value="{{$aceite->tipo}}">
                             </div>
                         </div>
                         <br>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="cantidad" name="cantidad" placeholder="Cantidad: 5200" value="{{$aceite->cantidad}}" pattern="^\d{1,8}(\.\d{1,2})?$">
+                                <input class="input is-large" type="text" id="cantidad" name="cantidad" placeholder="Cantidad: 5200" value="{{$aceite->cantidad}}">
                             </div>
                         </div>
                         <br>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="marca" name="marca" placeholder="Marca: ACME" value="{{$aceite->marca}}" pattern="^.{0,49}$">
+                                <input class="input is-large" type="text" id="marca" name="marca" placeholder="Marca: ACME" value="{{$aceite->marca}}">
                             </div>
                         </div>
                         <br>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="descripcion" name="descripcion" placeholder="Descripción: Aceite para..." pattern="^.{0,254}$" value="{{$aceite->descripcion}}" 
+                                <input class="input is-large" type="text" id="descripcion" name="descripcion" placeholder="Descripción: Aceite para..." value="{{$aceite->descripcion}}" 
                                 rows="3" cols="40">
                             </div>
                         </div>
