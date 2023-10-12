@@ -21,13 +21,6 @@
                     <p class="menu-label">
                         General
                     </p>
-                    <ul class="menu-list">
-                        <li><a class="is-active" href="/dashboard">Admin</a></li>
-                        <li><form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit">Cerrar sesión</button>
-                        </form></li>
-                    </ul>
                     <p class="menu-label">
                         Aceites
                     </p>
@@ -56,7 +49,7 @@
                     <div class="hero-body">
                         <div class="container">
                             <h1 class="title">
-                                Buenas Sr. Inge.
+                                Buenas Sr. Ingeniero.
                             </h1>
                             <h2 class="subtitle">
                                 Las ventas van bien el día de hoy!

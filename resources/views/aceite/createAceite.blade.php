@@ -76,7 +76,7 @@
                         </form>
                         <br>
                         <p class="has-text-purple">
-                            <a href="../">Inicio</a> &nbsp;·&nbsp;
+                            <a href="/dashboard">Inicio</a> &nbsp;·&nbsp;
                             <a href="/aceite">Regresar</a>
                         </p>
                     </div>

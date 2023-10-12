@@ -89,7 +89,7 @@
                         </form>
                         <br>
                         <p class="has-text-purple">
-                            <a href="{{ url('../') }}">Regresar</a>
+                            <a href="/aceite">Regresar</a>
                         </p>
                     </div>
                 </div>

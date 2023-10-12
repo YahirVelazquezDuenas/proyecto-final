@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registro de usuario</title>
+    <title>Registro de cliente</title>
     <link rel="icon" type="image/x-icon" href="/img/shinobuico.ico" />
     <link rel="stylesheet" href="{{ asset('css/createCliente.class') }}">
     <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
@@ -32,22 +32,22 @@
                                     <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Pedro Castro Salcedo"
                                         autofocus="" required pattern="^.{1,49}$">
                                 </div>
-                            </div>
+                            </div><br>
                             <div class="field">
                                 <div class="control">
                                     <input class="input is-large" type="text" id="direccion" name="direccion" placeholder="Dirección: Av. Sim 9877-21. Col. Pachín." required pattern="^.{1,100}$">
                                 </div>
-                            </div>
+                            </div><br>
                             <div class="field">
                                 <div class="control">
                                     <input class="input is-large" type="text" id="telefono" name="telefono" placeholder="Teléfono: +52 33 1248 9772" required pattern="^(\+\d{2}\s?)?(\(?\d{3}\)?[\s.-]?)?\d{3}[\s.-]?\d{4}(\s?ext\s?\d+)?$"><em><strong>No se permiten menos de diez digitos</strong></em>
                                 </div>
-                            </div>
+                            </div><br>
                             <div class="field">
                                 <div class="control">
                                     <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                                 </div>
-                            </div>
+                            </div><br>
                             <div class="field">
                                 <div class="control">
                                     <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Traer trompa de cochino." pattern="^.{0,254}$">
@@ -70,9 +70,8 @@
                         </form>
                         <br>
                         <p class="has-text-purple">
-                            <a href="../">Inicio</a> &nbsp;·&nbsp;
-                            <a href="/cliente">Regresar</a> &nbsp;·&nbsp;
-                            <a href="/singup">Conectarse</a>
+                            <a href="/dashboard">Inicio</a> &nbsp;·&nbsp;
+                            <a href="/cliente">Regresar</a>
                         </p>
                     </div>
                 </div>
