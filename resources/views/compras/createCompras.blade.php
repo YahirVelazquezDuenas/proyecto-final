@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Compra</title>
     <link rel="icon" type="image/x-icon" href="/img/fubukiico.ico" />
-    <link rel="stylesheet" href="{{ asset('css/createCompras.class') }}">
+    <link rel="stylesheet" href="{{ asset('css/compras/createCompras.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/createCompras.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/compras/createCompras.css') }}">
 </head>
 <body>
 <section class="hero is-success is-fullheight">

@@ -3,6 +3,13 @@
 .navbar-brand{
     font-size: 20px;
     text-align: center;
+    color: black;
+}
+.button {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 20px;
+    color: black;
+    border: none;
 }
 
 </style>
@@ -19,7 +26,7 @@
         Compras</a>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="button is-block is-primary is-fullwidth">Cerrar sesión</button>
+            <button type="submit" class="button is-block is-fullwidth">Cerrar sesión</button>
         </form>
     </div>        
 </div>

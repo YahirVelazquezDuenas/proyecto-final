@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar aceites</title>
     <link rel="icon" type="image/x-icon" href="/img/yuiico.ico" />
-    <link rel="stylesheet" href="{{ asset('css/editAceite.class') }}">
+    <link rel="stylesheet" href="{{ asset('css/aceite/editAceite.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/editAceite.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/aceite/editAceite.css') }}">
 </head>
 <body>
     <section class="hero is-success is-fullheight">

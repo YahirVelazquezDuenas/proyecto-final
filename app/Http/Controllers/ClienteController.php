@@ -47,7 +47,7 @@ class ClienteController extends Controller
             'direccion.unique' => 'La dirección ya está en uso.',
             'telefono.required' => 'El campo teléfono es obligatorio.',
             'telefono.string' => 'El campo teléfono debe ser una cadena de texto.',
-            'telefono.regex' => 'El campo teléfono debe tener un formato +55 1 55 1234 5678.',
+            'telefono.regex' => 'El campo teléfono debe tener un formato +55 123 456 7890.',
             'telefono.unique' => 'El teléfono ya está en uso.',
             'correo.required' => 'El campo correo es obligatorio.',
             'correo.string' => 'El campo correo debe ser una cadena de texto.',

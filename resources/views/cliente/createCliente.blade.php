@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro de cliente</title>
     <link rel="icon" type="image/x-icon" href="/img/shinobuico.ico" />
-    <link rel="stylesheet" href="{{ asset('css/createCliente.class') }}">
+    <link rel="stylesheet" href="{{ asset('css/cliente/createCliente.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/createCliente.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/cliente/createCliente.css') }}">
 </head>
 <body>
     <section class="hero is-success is-fullheight">
@@ -51,7 +51,7 @@
                             </div><br>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Traer trompa de cochino." value="{{ old('comentario') }}">
+                                    <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Soy un nuevo ciente." value="{{ old('comentario') }}">
                                 </div>
                             </div>
                             <div class="field">
