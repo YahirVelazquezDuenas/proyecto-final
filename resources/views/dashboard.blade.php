@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/admin.css">
 </head>
-
 <body>
     <x-barra></x-barra>
     <div class="container">
@@ -45,7 +44,7 @@
                 </aside>
             </div>
             <div class="column is-9">
-                <section class="hero is-info welcome is-small">
+                <section class="hero is-custom-purple is-small">
                     <div class="hero-body">
                         <div class="container">
                             <h1 class="title">

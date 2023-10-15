@@ -33,19 +33,24 @@ class AceiteController extends Controller
     {
 
         $request->validate([
-            'nombre' => 'required|string|unique:aceites',
-            'tipo' => 'nullable|string',
-            'cantidad' => 'nullable|numeric',
-            'marca' => 'nullable|string',
-            'descripcion' => 'nullable|string',
+            'nombre' => 'required|string|max:255',
+            'tipo' => 'nullable|string|max:255',
+            'cantidad' => 'nullable|numeric|max:999999.99',
+            'marca' => 'nullable|string|max:255',
+            'descripcion' => 'string|unique:aceites|max:255',
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
             'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
-            'nombre.unique' => 'El nombre ya está en uso.',
+            'nombre.max'=>'El campo nombre no puede tener más de 255 caracteres',
             'tipo.string' => 'El campo tipo debe ser una cadena de texto.',
+            'tipo.max'=>'El campo tipo no puede tener más de 255 caracteres',
             'cantidad.numeric' => 'El campo cantidad debe ser un número.',
+            'cantidad.max'=>'El campo cantidad no puede ser mayor a 999,999.99',
             'marca.string' => 'El campo marca debe ser una cadena de texto.',
+            'marca.max'=>'El campo marca no puede tener más de 255 caracteres',
             'descripcion.string' => 'El campo descripción debe ser una cadena de texto.',
+            'descripcion.max'=>'El campo descripción no puede tener más de 255 caracteres',
+            'descripcion.unique' => 'La descripción ya está en uso.',
         ]);
 
         $aceite = new Aceite();
@@ -95,15 +100,14 @@ class AceiteController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nombre' => 'required|string|unique:aceites|max:255',
+            'nombre' => 'required|string|max:255',
             'tipo' => 'nullable|string|max:255',
             'cantidad' => 'nullable|numeric|max:999999.99',
             'marca' => 'nullable|string|max:255',
-            'descripcion' => 'nullable|string|max:255',
+            'descripcion' => 'string|unique:aceites|max:255',
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
             'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
-            'nombre.unique' => 'El nombre ya está en uso.',
             'nombre.max'=>'El campo nombre no puede tener más de 255 caracteres',
             'tipo.string' => 'El campo tipo debe ser una cadena de texto.',
             'tipo.max'=>'El campo tipo no puede tener más de 255 caracteres',
@@ -113,6 +117,7 @@ class AceiteController extends Controller
             'marca.max'=>'El campo marca no puede tener más de 255 caracteres',
             'descripcion.string' => 'El campo descripción debe ser una cadena de texto.',
             'descripcion.max'=>'El campo descripción no puede tener más de 255 caracteres',
+            'descripcion.unique' => 'La descripción ya está en uso.',
         ]);
         $aceite = Aceite::find($id);
     

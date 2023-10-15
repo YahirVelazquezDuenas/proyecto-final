@@ -48,7 +48,7 @@ h2 {
 table {
   border-collapse: collapse;
   width: auto;
-  background-color:#c5a3ff;
+  background-color:white;
 }
 
 th {
@@ -65,4 +65,5 @@ td {
 
 .sub {
   font-size: 20px;
+  text-align: center;
 }

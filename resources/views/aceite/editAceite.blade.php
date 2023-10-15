@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar aceites</title>
+    <title>Editar aceite</title>
     <link rel="icon" type="image/x-icon" href="/img/yuiico.ico" />
     <link rel="stylesheet" href="{{ asset('css/aceite/editAceite.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
@@ -20,15 +20,15 @@
                     <hr class="login-hr">
                     <p class="subtitle has-text-white">Ingresa los nuevos datos</p>
                     <div class="box">
-                        <x-validation-errors :errors="$errors" class="mb-4" />
-                    @if(session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
                         <form action="{{ route('aceite.update', $aceite->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+                        <x-validation-errors :errors="$errors" class="mb-4" />
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Diesel LSD"
@@ -75,8 +75,7 @@
                                         value="Limpiar formulario">
                                 </div>
                             </div>
-                        </form>
-                        <br>        
+                        </form><br>        
                         <form action="{{ route('aceite.destroy', $aceite->id) }}" method="POST">
                             @csrf
                             @method('DELETE')

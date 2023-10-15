@@ -3,12 +3,12 @@
 .navbar-brand{
     font-size: 20px;
     text-align: center;
-    color: black;
+    color: white;
 }
 .button {
     background-color: rgba(0, 0, 0, 0);
     font-size: 20px;
-    color: black;
+    color: white;
     border: none;
 }
 

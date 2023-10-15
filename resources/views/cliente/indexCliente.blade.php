@@ -3,68 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/img/cmico.ico" />
+    <link rel="stylesheet" href="{{ asset('css/cliente/indexCliente.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.4/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/cliente/indexCliente.css') }}">
-    <title>Principal de cliente</title>
+    <title>Principal de clientes</title>
 </head>
 <body>
-    <center><h1>Encabezados de cliente</h1></center>
-    @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
+<section class="hero is-success is-fullheight">
+    <x-barra></x-barra> 
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        <div class="container">
+            <h1 class="title" style="color: black;">Principal de Clientes</h1>
+            <br><a href="{{ url('/cliente/create') }}" class="button is-info is-fullwidth">
+                Registrar un nuevo cliente
+            </a><br><br>
+            <form action="{{ url('/cliente/showCliente') }}" method="GET"> 
+                <div class="sub">
+                    <label for="id">ID de cliente a buscar:</label>
+                    <input class="cuadro-buscar" type="id" id="id" name="id" placeholder="21" autofocus="">
+                </div><br><br>
+                <label for="enviar"></label>
+                <input type="submit" class="button is-block is-info is-large is-fullwidth" id="enviar" name="enviar">
+            </form>
+            <br><h2 class="title" style="color: black;">Tablas de clientes registrados</h2>
+            @foreach ($clienteIndex as $cliente)
+                <ul>
+                    <center>
+                    <table>
+                        <tr>
+                            <th colspan="2">Tabla del cliente: {{ $cliente->id }}</th>
+                        </tr>
+                        <tr>
+                            <th>Atributo</th>
+                            <th>Valor</th>
+                        </tr>
+                        <tr>
+                            <td>ID</td>
+                            <td>{{ $cliente->id }}</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>{{ $cliente->nombre }}</td>
+                        </tr>
+                        <tr>
+                            <td>Dirección</td>
+                            <td>{{ $cliente->direccion }}</td>
+                        </tr>
+                        <tr>
+                            <td>Teléfono</td>
+                            <td>{{ $cliente->telefono }}</td>
+                        </tr>
+                        <tr>
+                            <td>Correo</td>
+                            <td>{{ $cliente->correo }}</td>
+                        </tr>
+                        <tr>
+                            <td>Comentario</td>
+                            <td>{{ $cliente->comentario }}</td>
+                        </tr>
+                    </table>
+                    <br><a href="{{ route('cliente.edit', $cliente->id) }}" class="button is-primary">Editar Cliente</a>
+                    <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <br><button type="submit" class="button is-danger">Eliminar Cliente</button>
+                    </form><br>
+                </ul>
+            @endforeach
+                    </center>
         </div>
-    @endif
-    <a href="{{ url('/') }}">Volver al inicio</a>
-    <h3>Cliente:</h3>
-    <a href="{{ url('/cliente/create') }}">Registrar un nuevo cliente.</a>
-        <br>
-    <form action="{{ url('/cliente/showCliente') }}" method="GET"> 
-        <h3>Buscar:</h3>
-            <label for="id">ID de cliente:</label>
-            <input type="id" id="id" name="id" placeholder="12">
-        <br>
-        <label for="enviar"></label>
-        <input type="submit" id="enviar" name="enviar">
-    </form>
-    <h3>Clientes registrados:</h3>
-    @foreach ($clienteIndex as $cliente)
-        <ul>
-            <table>
-                <tr>
-                    <th>Atributo</th>
-                    <th>Valor</th>
-                </tr>
-                <tr>
-                    <td>ID:</td>
-                    <td>{{ $cliente->id }}</td>
-                </tr>
-                <tr>
-                    <td>Nombre:</td>
-                    <td>{{ $cliente->nombre }}</td>
-                </tr>
-                <tr>
-                    <td>Dirección:</td>
-                    <td>{{ $cliente->direccion }}</td>
-                </tr>
-                <tr>
-                    <td>Teléfono:</td>
-                    <td>{{ $cliente->telefono }}</td>
-                </tr>
-                <tr>
-                    <td>Correo:</td>
-                    <td>{{ $cliente->correo }}</td>
-                </tr>
-                <tr>
-                    <td>Comentario:</td>
-                    <td>{{ $cliente->comentario }}</td>
-                </tr>
-            </table>
-            <br><a href="{{ route('cliente.edit', $cliente->id) }}">Editar Cliente</a>
-            <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit">Eliminar Cliente</button>
-            </form></li>
-        </ul>
-    @endforeach
+    <x-derechos></x-derechos>
+</section>
 </body>
 </html>

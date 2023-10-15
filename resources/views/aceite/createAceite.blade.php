@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Aceites</title>
+    <title>Crear aceite</title>
     <link rel="icon" type="image/x-icon" href="/img/tatsumakiico.ico" />
     <link rel="stylesheet" href="{{ asset('css/aceite/createAceite.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
@@ -86,6 +86,5 @@
         </div>
         <x-derechos></x-derechos>
     </section>
-    <script src="{{ asset('js/welcome.js') }}"></script>
 </body>
 </html>

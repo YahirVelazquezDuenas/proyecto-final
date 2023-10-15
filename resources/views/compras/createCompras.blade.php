@@ -16,7 +16,7 @@
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
-                    <h1 class="title">Registro de compras</h1>
+                    <h1 class="title">Registrar compras</h1>
                     <hr class="login-hr">
                         <p class="subtitle has-text-white">Ingresa los datos</p>
                             <div class="box">
@@ -46,23 +46,23 @@
                                             <input type="radio" id="tarjeta" name="metodo" value="tarjeta" {{ old('metodo') == 'tarjeta' ? 'checked' : '' }}>
                                             <label for="tarjeta">Tarjeta</label>
                                         </div><br>
-                                    </div>
-                                    <div class="pagar">
-                                        <label for="total">Total a pagar: $</label>
-                                        <input type="text" id="total" name="total" placeholder="1222.99" value="{{ old('total') }}">
-                                    </div><br><br>
-                                    <div class="field">
-                                        <div class="control">
-                                            <button class="button is-block is-info is-large is-fullwidth" type="submit">
+                                        </div>
+                                        <div class="pagar">
+                                            <label for="total">Total a pagar: $</label>
+                                            <input type="text" id="total" name="total" placeholder="1222.99" value="{{ old('total') }}">
+                                        </div><br><br>
+                                        <div class="field">
+                                            <div class="control">
+                                                <button class="button is-block is-info is-large is-fullwidth" type="submit">
                                                 Enviar</button>
-                                        </div>
-                                    </div>        
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="button is-block is-primary is-large is-fullwidth" type="reset"
+                                            </div>
+                                        </div>        
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="button is-block is-primary is-large is-fullwidth" type="reset"
                                                 value="Limpiar formulario">
+                                            </div>
                                         </div>
-                                    </div>
                                 </form><br>
                                     <p class="has-text-purple">
                                     <a href="/dashboard">Inicio</a> &nbsp;·&nbsp;

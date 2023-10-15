@@ -33,7 +33,7 @@ class ClienteController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'direccion' => 'required|string|max:255|unique:clientes',
+            'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|regex:/^(\+\d{1,3})?[- .]?\(?(\d{3})\)?[- .]?(\d{3})[- .]?(\d{4})$/|unique:clientes',
             'correo' => 'required|string|email|unique:clientes',
             'comentario' => 'nullable|string',
@@ -44,7 +44,6 @@ class ClienteController extends Controller
             'direccion.required' => 'El campo dirección es obligatorio.',
             'direccion.string' => 'El campo dirección debe ser una cadena de texto.',
             'direccion.max' => 'El campo dirección no puede tener más de 255 caracteres.',
-            'direccion.unique' => 'La dirección ya está en uso.',
             'telefono.required' => 'El campo teléfono es obligatorio.',
             'telefono.string' => 'El campo teléfono debe ser una cadena de texto.',
             'telefono.regex' => 'El campo teléfono debe tener un formato +55 123 456 7890.',
@@ -101,7 +100,7 @@ class ClienteController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'direccion' => 'required|string|max:255|unique:clientes',
+            'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|regex:/^(\+\d{1,3})?[- .]?\(?(\d{3})\)?[- .]?(\d{3})[- .]?(\d{4})$/|unique:clientes',
             'correo' => 'required|string|email|unique:clientes',
             'comentario' => 'nullable|string',
@@ -112,7 +111,6 @@ class ClienteController extends Controller
             'direccion.required' => 'El campo dirección es obligatorio.',
             'direccion.string' => 'El campo dirección debe ser una cadena de texto.',
             'direccion.max' => 'El campo dirección no puede tener más de 255 caracteres.',
-            'direccion.unique' => 'La dirección ya está en uso.',
             'telefono.required' => 'El campo teléfono es obligatorio.',
             'telefono.string' => 'El campo teléfono debe ser una cadena de texto.',
             'telefono.regex' => 'El campo teléfono debe tener un formato +55 1 55 1234 5678.',
