@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('aceites', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('tipo');
-            $table->float('cantidad');
-            $table->string('marca');
-            $table->string('descripcion');
+            $table->string('nombre')->nullable(false);
+            $table->string('tipo')->nullable();
+            $table->float('cantidad')->nullable();
+            $table->string('marca')->nullable();
+            $table->string('descripcion')->unique();
             $table->timestamps();
         });
     }

@@ -1,0 +1,92 @@
+.error-message {
+    background-color: #ffcccc;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.error-list {
+    color: #ff0000;
+    margin-top: 5px;
+    padding-left: 20px;
+}
+
+.error-list-item {
+    margin-bottom: 5px;
+}
+
+html,body {
+    font-family: 'Questrial', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.hero.is-success {
+    background-image: url('/img/fubuki.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.hero .nav, .hero.is-success .nav {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.box {
+    margin-top: 0;
+}
+
+input {
+    font-weight: 300;
+}
+
+p {
+    font-weight: 700;
+    
+}
+    
+p.subtitle {
+    padding-top: 1rem;
+    font-size: 20px;
+}
+
+.login-hr {
+    border-bottom: 1px solid green;
+}
+    
+.field {
+    padding-bottom: 8px;
+}
+
+.fa {
+    margin-left: 5px;
+}
+
+.field input::placeholder {
+    color: black;
+    font-size: 18px;
+}
+
+.field label.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.has-text-purple {
+    color:purple;
+    font-size: 15px;
+}
+
+.fecha, .metodo, .pagar {
+    text-align: left;
+    font-size: 20px;
+}
+
+input[type="date"] {
+    border: 2px solid blueviolet;
+}

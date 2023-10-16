@@ -35,12 +35,21 @@ class ComprasController extends Controller
             'fecha' => 'required|date',
             'metodo' => 'required|string',
             'total' => 'required|numeric',
+        ], [
+            'fecha.required' => 'El campo de fecha es obligatorio.',
+            'fecha.date' => 'El campo de fecha debe ser una fecha válida.',
+            'metodo.required' => 'El campo de método de pago es obligatorio.',
+            'metodo.string' => 'El campo de método de pago debe ser una cadena de texto.',
+            'total.required' => 'El campo de total es obligatorio.',
+            'total.numeric' => 'El campo de total debe ser un número.',
         ]);
+
         $compra = new Compras();
         $compra->fecha = $request->fecha;
         $compra->metodo = $request->metodo;
         $compra->total = $request->total;
         $compra->save();
+
         return redirect('/compras');
     }
 
@@ -53,8 +62,9 @@ class ComprasController extends Controller
         $compra = Compras::find($id);
             
         if (!$compra) {
-            return redirect()->back()->with('error', 'La compra no se encontró.');
+            return redirect()->back()->with('errorc', 'La compra no se encontró.');
         }
+
         return view('/compras/showCompras', ['compra' => $compra]);
     }
 
@@ -64,24 +74,62 @@ class ComprasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Compras $compras)
+    public function edit($id)
     {
-        //
+        $compras = Compras::find($id);
+
+        if (!$compras) {
+            return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');
+        }
+
+        return view('/compras/editCompras', ['compras' => $compras]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Compras $compras)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'fecha' => 'required|date',
+            'metodo' => 'required|string',
+            'total' => 'required|numeric',
+        ], [
+            'fecha.required' => 'El campo de fecha es obligatorio.',
+            'fecha.date' => 'El campo de fecha debe ser una fecha válida.',
+            'metodo.required' => 'El campo de método de pago es obligatorio.',
+            'metodo.string' => 'El campo de método de pago debe ser una cadena de texto.',
+            'total.required' => 'El campo de total es obligatorio.',
+            'total.numeric' => 'El campo de total debe ser un número.',
+        ]);
+    
+        $compras = Compras::find($id);
+    
+        if (!$compras) {
+            return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');
+        }
+    
+        $compras->fecha = $request->fecha;
+        $compras->metodo = $request->metodo;
+        $compras->total = $request->total;
+        $compras->save();
+    
+        return redirect()->route('compras.index')->with('success', 'La compra se ha actualizado con éxito.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Compras $compras)
+    public function destroy($id)
     {
-        //
+        $compras = Compras::find($id);
+
+        if (!$compras) {
+            return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');
+        }
+
+        $compras->delete();
+
+        return redirect()->route('compras.index')->with('success', 'La compra se ha eliminado con éxito.');
     }
 }

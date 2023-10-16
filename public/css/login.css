@@ -1,0 +1,86 @@
+html,body {
+  font-family: 'Questrial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+h1 { 
+  color: black;
+  font-family: 'Questrial', sans-serif;
+  font-size: 3rem;
+}
+
+.hero.is-success {
+  background-image: url('/img/elma.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.hero .nav, .hero.is-success .nav {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.box {
+  margin-top: 5rem;
+}
+
+.avatar {
+  margin-top: -70px;
+  padding-bottom: 20px;
+}
+
+.avatar img {
+  padding: 3px;
+  background: white;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+  box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+  max-width: 100px;
+  height: auto;
+}
+
+input {
+  font-weight: 300;
+}
+
+p {
+  font-weight: 700;
+  }
+  
+p.subtitle {
+  padding-top: 1rem;
+}
+  
+.login-hr {
+  border-bottom: 1px solid pink;
+}
+  
+.has-text-black {
+  color: black;
+}
+
+.has-text-purple {
+  color: blueviolet;
+  font-size: 15px;
+}
+  
+.field {
+  padding-bottom: 8px;
+}
+
+.fa {
+  margin-left: 5px;
+}
+
+.field input::placeholder {
+  color: black;
+  font-size: 18px;
+}
+
+.field label.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
