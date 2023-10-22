@@ -96,7 +96,7 @@
                             <div class="content">
                                 <form action="{{ url('/aceite/showAceite') }}" method="GET">
                                     <div class="control has-icons-left has-icons-right">
-                                        <input class="input is-large" type="number" id="id" name="id" placeholder="ID de aceite">
+                                        <input class="input is-large" type="number" id="id" name="id_aceite" placeholder="ID de aceite">
                                         <span class="icon is-medium is-left">
                                             <i class="fa fa-search"></i>
                                         </span>
@@ -128,7 +128,7 @@
                             <div class="content">
                                 <form action="{{ url('/compras/showCompras') }}" method="GET">
                                     <div class="control has-icons-left has-icons-right">
-                                        <input class="input is-large" type="number" id="id" name="id" placeholder="ID de compra">
+                                        <input class="input is-large" type="number" id="id" name="id_compra" placeholder="ID de compra">
                                         <span class="icon is-medium is-left">
                                             <i class="fa fa-search"></i>
                                         </span>

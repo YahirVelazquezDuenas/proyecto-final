@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre')->nullable(false);
+            $table->id('id_cliente');
+            $table->string ('nombre')->nullable(false);
             $table->string('direccion')->nullable(false);
             $table->string('telefono')->unique()->nullable(false);
             $table->string('correo')->unique()->nullable(false);

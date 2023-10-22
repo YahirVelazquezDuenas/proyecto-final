@@ -20,7 +20,7 @@
                     <hr class="login-hr">
                     <p class="subtitle has-text-white">Ingresa los nuevos datos</p>
                     <div class="box">
-                        <form action="{{ route('cliente.update', $cliente->id) }}" method="POST">
+                        <form action="{{ route('cliente.update', $cliente->id_cliente) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <x-validation-errors :errors="$errors" class="mb-4" />
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         </form><br> 
-                        <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
+                        <form action="{{ route('cliente.destroy', $cliente->id_cliente) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <div class="field">

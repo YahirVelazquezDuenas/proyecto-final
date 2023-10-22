@@ -31,7 +31,7 @@
             <form action="{{ url('/compras/showCompras') }}" method="GET"> 
                 <div class="sub">
                     <label for="id">ID de compra a buscar:</label>
-                    <input class="cuadro-buscar" type="id" id="id" name="id" placeholder="21" autofocus="">
+                    <input class="cuadro-buscar" type="id" id="id" name="id_compra" placeholder="21" autofocus="">
                 </div><br><br>
                     <label for="enviar"></label>
                     <input type="submit" class="button is-block is-info is-large is-fullwidth" id="enviar" name="enviar">
@@ -42,7 +42,7 @@
                     <center>
                     <table>
                         <tr>
-                            <th colspan="2">Tabla de la compra: {{ $compras->id }}</th>
+                            <th colspan="2">Tabla de la compra: {{ $compras->id_compra }}</th>
                         </tr>
                         <tr>
                             <th>Atributo</th>
@@ -50,7 +50,7 @@
                         </tr>
                         <tr>
                             <td>ID</td>
-                            <td>{{ $compras->id }}</td>
+                            <td>{{ $compras->id_compra }}</td>
                         </tr>
                         <tr>
                             <td>Fecha</td>
@@ -65,8 +65,8 @@
                             <td>{{ $compras->total }}</td>
                         </tr>
                     </table>
-                    <br><a href="{{ route('compras.edit', $compras->id) }}" class="button is-primary">Editar Compra</a>
-                    <form action="{{ route('compras.destroy', $compras->id) }}" method="POST">
+                    <br><a href="{{ route('compras.edit', $compras->id_compra) }}" class="button is-primary">Editar Compra</a>
+                    <form action="{{ route('compras.destroy', $compras->id_compra) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <br><button type="submit" class="button is-danger">Eliminar Compra</button>

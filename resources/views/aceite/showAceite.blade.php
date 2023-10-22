@@ -19,7 +19,7 @@
                 <center>
                 <table>
                     <tr>
-                        <th colspan="2">Tabla del aceite: {{ $aceite->id }}</th>
+                        <th colspan="2">Tabla del aceite: {{ $aceite->id_aceite }}</th>
                     </tr>
                     <tr>
                         <th>Atributo</th>
@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td>ID</td>
-                        <td>{{ $aceite->id }}</td>
+                        <td>{{ $aceite->id_aceite }}</td>
                     </tr>
                     <tr>
                         <td>Nombre</td>
@@ -50,8 +50,8 @@
                         <td>{{ $aceite->descripcion }}</td>
                     </tr>
                 </table>
-                <br><a href="{{ route('aceite.edit', $aceite->id) }}" class="button is-primary">Editar Aceite</a>
-                <form action="{{ route('aceite.destroy', $aceite->id) }}" method="POST">
+                <br><a href="{{ route('aceite.edit', $aceite->id_aceite) }}" class="button is-primary">Editar Aceite</a>
+                <form action="{{ route('aceite.destroy', $aceite->id_aceite) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <br><button type="submit" class="button is-danger">Eliminar Aceite</button>

@@ -31,7 +31,7 @@
             <form action="{{ url('/aceite/showAceite') }}" method="GET"> 
             <div class="sub">
                 <label for="id">ID de aceite a buscar:</label>
-                <input class="cuadro-buscar" type="id" id="id" name="id" placeholder="12" autofocus="">
+                <input class="cuadro-buscar" type="id" id="id" name="id_aceite" placeholder="12" autofocus="">
             </div><br><br>
             <label for="enviar"></label>
             <input type="submit" class="button is-block is-info is-large is-fullwidth" id="enviar" name="enviar">
@@ -42,7 +42,7 @@
                         <center>
                         <table>
                             <tr>
-                                <th colspan="2">Tabla del aceite: {{ $aceite->id }}</th>
+                                <th colspan="2">Tabla del aceite: {{ $aceite->id_aceite }}</th>
                             </tr>
                             <tr>
                                 <th>Atributo</th>
@@ -50,7 +50,7 @@
                             </tr>
                             <tr>
                                 <td>ID</td>
-                                <td>{{ $aceite->id }}</td>
+                                <td>{{ $aceite->id_aceite }}</td>
                             </tr>
                             <tr>
                                 <td>Nombre</td>
@@ -73,8 +73,8 @@
                                 <td>{{ $aceite->descripcion }}</td>
                             </tr>
                         </table>
-                        <br><a href="{{ route('aceite.edit', $aceite->id) }}" class="button is-primary">Editar Aceite</a>
-                        <form action="{{ route('aceite.destroy', $aceite->id) }}" method="POST">
+                        <br><a href="{{ route('aceite.edit', $aceite->id_aceite) }}" class="button is-primary">Editar Aceite</a>
+                        <form action="{{ route('aceite.destroy', $aceite->id_aceite) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <br><button type="submit" class="button is-danger">Eliminar Aceite</button>

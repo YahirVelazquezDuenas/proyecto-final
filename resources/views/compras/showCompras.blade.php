@@ -19,7 +19,7 @@
             <center>
                 <table>
                     <tr>
-                        <th colspan="2">Tabla de la compra: {{ $compra->id }}</th>
+                        <th colspan="2">Tabla de la compra: {{ $compra->id_compra }}</th>
                     </tr>
                     <tr>
                         <th>Atributo</th>
@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td>ID</td>
-                        <td>{{ $compra->id }}</td>
+                        <td>{{ $compra->id_compra }}</td>
                     </tr>
                     <tr>
                         <td>Fecha</td>
@@ -42,8 +42,8 @@
                         <td>{{ $compra->total }}</td>
                     </tr>
                 </table>
-                <br><a href="{{ route('compras.edit', $compra->id) }}" class="button is-primary">Editar Compra</a>
-                <form action="{{ route('compras.destroy', $compra->id) }}" method="POST">
+                <br><a href="{{ route('compras.edit', $compra->id_compra) }}" class="button is-primary">Editar Compra</a>
+                <form action="{{ route('compras.destroy', $compra->id_compra) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <br><button type="submit" class="button is-danger">Eliminar Compra</button>

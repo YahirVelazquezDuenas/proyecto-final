@@ -47,6 +47,53 @@
                                             <label for="tarjeta">Tarjeta</label>
                                         </div><br>
                                         </div>
+                                        <div class="field">
+                                            <label class="label">Selecciona un aceite y su cantidad:</label>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <select name="aceites[]">
+                                                        @foreach($aceites as $aceite)
+                                                            <option value="{{ $aceite->id_aceite }}">{{ $aceite->nombre }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label class="label">Selecciona un aceite y su cantidad:</label>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <select name="aceites[]">
+                                                        @foreach($aceites as $aceite)
+                                                            <option value="{{ $aceite->id_aceite }}">{{ $aceite->nombre }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label class="label">Selecciona un aceite y su cantidad:</label>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <select name="aceites[]">
+                                                        @foreach($aceites as $aceite)
+                                                            <option value="{{ $aceite->id_aceite }}">{{ $aceite->nombre }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
+                                            </div>
+                                        </div>
+                                        <div class="cliente">
+                                            <label for="id_cliente">Cliente:</label>
+                                            <select id="id_cliente" name="id_cliente">
+                                                @foreach($clientes as $cliente)
+                                                    <option value="{{ $cliente->id_cliente }}">{{ $cliente->nombre }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <div class="pagar">
                                             <label for="total">Total a pagar: $</label>
                                             <input type="text" id="total" name="total" placeholder="1222.99" value="{{ old('total') }}">

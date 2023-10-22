@@ -19,7 +19,7 @@
                 <center>
                 <table>
                     <tr>
-                        <th colspan="2">Tabla del cliente: {{ $cliente->id }}</th>
+                        <th colspan="2">Tabla del cliente: {{ $cliente->id_cliente }}</th>
                     </tr>
                     <tr>
                         <th>Atributo</th>
@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td>ID</td>
-                        <td>{{ $cliente->id }}</td>
+                        <td>{{ $cliente->id_cliente }}</td>
                     </tr>
                     <tr>
                         <td>Nombre</td>
@@ -50,8 +50,8 @@
                         <td>{{ $cliente->comentario }}</td>
                     </tr>
                 </table>
-                <br><a href="{{ route('cliente.edit', $cliente->id) }}" class="button is-primary">Editar Cliente</a>
-                <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
+                <br><a href="{{ route('cliente.edit', $cliente->id_cliente) }}" class="button is-primary">Editar Cliente</a>
+                <form action="{{ route('cliente.destroy', $cliente->id_cliente) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <br><button type="submit" class="button is-danger">Eliminar Cliente</button>

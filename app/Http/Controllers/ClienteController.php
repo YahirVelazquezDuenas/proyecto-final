@@ -35,8 +35,8 @@ class ClienteController extends Controller
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|regex:/^(\+\d{1,3})?[- .]?\(?(\d{3})\)?[- .]?(\d{3})[- .]?(\d{4})$/|unique:clientes',
-            'correo' => 'required|string|email|unique:clientes',
-            'comentario' => 'nullable|string',
+            'correo' => 'required|string|email|unique:clientes|max:255',
+            'comentario' => 'nullable|string|max:255',
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
             'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
@@ -52,7 +52,9 @@ class ClienteController extends Controller
             'correo.string' => 'El campo correo debe ser una cadena de texto.',
             'correo.email' => 'El correo electrónico no es válido.',
             'correo.unique' => 'El correo electrónico ya está en uso.',
+            'correo.max' => 'El campo correo no puede tener más de 255 caracteres.',
             'comentario.string' => 'El campo comentario debe ser una cadena de texto.',
+            'comentario.max' => 'El comentario no puede tener más de 255 caracteres.'
         ]);
         $cliente = new Cliente();
         $cliente->nombre = $request->nombre;
@@ -70,7 +72,7 @@ class ClienteController extends Controller
      */
     public function show(Request $request)
     {
-        $id = $request->input('id');
+        $id = $request->input('id_cliente');
         $cliente = Cliente::find($id);
             
         if (!$cliente) {

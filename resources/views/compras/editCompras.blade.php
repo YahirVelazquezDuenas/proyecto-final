@@ -20,7 +20,7 @@
                     <hr class="login-hr">
                     <p class="subtitle has-text-white">Ingresa los nuevos datos</p>
                     <div class="box">
-                        <form action="{{ route('compras.update', $compras->id) }}" method="POST">
+                        <form action="{{ route('compras.update', $compras->id_compra) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <x-validation-errors :errors="$errors" class="mb-4" />
@@ -69,7 +69,7 @@
                             </div>
                         </div><br>
                         </form>
-                        <form action="{{ route('compras.destroy', $compras->id) }}" method="POST">
+                        <form action="{{ route('compras.destroy', $compras->id_compra) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <div class="field">

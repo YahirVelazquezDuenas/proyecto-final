@@ -35,7 +35,7 @@ class AceiteController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'tipo' => 'nullable|string|max:255',
-            'cantidad' => 'nullable|numeric|max:999999.99',
+            'cantidad' => 'nullable|numeric|max:999999.99|min:0',
             'marca' => 'nullable|string|max:255',
             'descripcion' => 'string|unique:aceites|max:255',
         ], [
@@ -46,6 +46,7 @@ class AceiteController extends Controller
             'tipo.max'=>'El campo tipo no puede tener más de 255 caracteres',
             'cantidad.numeric' => 'El campo cantidad debe ser un número.',
             'cantidad.max'=>'El campo cantidad no puede ser mayor a 999,999.99',
+            'cantidad.min' => 'El campo cantidad no puede ser negativo.',
             'marca.string' => 'El campo marca debe ser una cadena de texto.',
             'marca.max'=>'El campo marca no puede tener más de 255 caracteres',
             'descripcion.string' => 'El campo descripción debe ser una cadena de texto.',
@@ -71,7 +72,7 @@ class AceiteController extends Controller
      */
     public function show(Request $request)
     {
-        $id = $request->input('id');
+        $id = $request->input('id_aceite');
         $aceite = Aceite::find($id);
             
         if (!$aceite) {
