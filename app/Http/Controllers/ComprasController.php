@@ -19,8 +19,9 @@ class ComprasController extends Controller
         $compras= new Compras ();
 
         $comprasIndex = Compras::all();
+        $detalleIndex = DetalleCompra::all();
 
-        return view('compras/indexCompras', compact ('comprasIndex'));
+        return view('compras/indexCompras', compact ('comprasIndex', 'detalleIndex'));
     }
     /**
      * Show the form for creating a new resource.
@@ -95,12 +96,13 @@ class ComprasController extends Controller
     {
         $id = $request->input('id_compra');
         $compra = Compras::find($id);
+        $detalle = DetalleCompra::find($id);
             
         if (!$compra) {
             return redirect()->back()->with('errorc', 'La compra no se encontró.');
         }
 
-        return view('/compras/showCompras', ['compra' => $compra]);
+        return view('/compras/showCompras', ['compra' => $compra, 'detalle' => $detalle]);
     }
 
     //si quisieramos pasar solo el id, se podría hacer el find directamente y colocarlo en la URL

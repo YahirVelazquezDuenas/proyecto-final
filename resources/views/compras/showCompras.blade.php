@@ -41,6 +41,18 @@
                         <td>Total</td>
                         <td>{{ $compra->total }}</td>
                     </tr>
+                    <tr>
+                        <td>ID_detalle</td>
+                        <td>{{ $detalle->id_detalle }}</td>
+                    </tr>
+                    <tr>
+                        <td>ID_aceite</td>
+                        <td>{{ $detalle->id_aceite }}</td>
+                    </tr>
+                    <tr>
+                        <td>Cantidad</td>
+                        <td>{{ $detalle->cantidad }}</td>
+                    </tr>
                 </table>
                 <br><a href="{{ route('compras.edit', $compra->id_compra) }}" class="button is-primary">Editar Compra</a>
                 <form action="{{ route('compras.destroy', $compra->id_compra) }}" method="POST">

@@ -38,7 +38,10 @@
             </form>
             <br><h2 class="title" style="color: white;">Tablas de compras registradas</h2>
             @foreach ($comprasIndex as $compras)
-                <ul>
+            @foreach ($compra->detallesCompras as $detalle)
+            {{ $detalle->aceite-> }
+            @foreach ($detalleIndex as $detalle)
+                <ul> 
                     <center>
                     <table>
                         <tr>
@@ -54,6 +57,7 @@
                         </tr>
                         <tr>
                             <td>Fecha</td>
+
                             <td>{{ $compras->fecha }}</td>
                         </tr>
                         <tr>
@@ -64,14 +68,27 @@
                             <td>Total</td>
                             <td>{{ $compras->total }}</td>
                         </tr>
+                        <tr>
+                            <td>ID_detalle</td>
+                            <td>{{ $detalle->id_detalle }}</td>
+                        </tr>
+                        <tr>
+                            <td>ID_aceite</td>
+                            <td>{{ $detalle->id_aceite }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cantidad</td>
+                            <td>{{ $detalle->cantidad }}</td>
+                        </tr>
                     </table>
                     <br><a href="{{ route('compras.edit', $compras->id_compra) }}" class="button is-primary">Editar Compra</a>
                     <form action="{{ route('compras.destroy', $compras->id_compra) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <br><button type="submit" class="button is-danger">Eliminar Compra</button>
-                    </form><br>
+                    </form><br>@endforeach
                 </ul>
+                
             @endforeach
                     </center>
         </div>
