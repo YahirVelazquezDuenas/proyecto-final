@@ -59,6 +59,10 @@
                                 rows="3" cols="40" value="{{ old('descripcion') }}">
                             </div>
                         </div>
+                        <div class="pagar">
+                                            <label for="total">Precio: $</label>
+                                            <input type="text" id="precio" name="precio" placeholder="122.99" value="{{ old('precio') }}">
+                                        </div><br><br>
                         <br>
                         <div class="field">
                             <div class="control">

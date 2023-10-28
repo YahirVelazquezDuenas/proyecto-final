@@ -53,13 +53,6 @@
                                 </label>
                             </div>
                         </div>
-
-                        <div class="field">
-                            <label class="label" for="total">Total a pagar:</label>
-                            <div class="control">
-                                <input class="input" type="text" id="total" name="total" placeholder="1222.99" value="{{ $compras->total }}">
-                            </div>
-                        </div>
                         <div class="field">
     <label class="label">Cliente:</label>
     <div class="control">

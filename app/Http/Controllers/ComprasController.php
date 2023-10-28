@@ -41,7 +41,6 @@ class ComprasController extends Controller
         $request->validate([
             'fecha' => 'required|date',
             'metodo' => 'required|string',
-            'total' => 'required|numeric',
             'aceites' => 'required|array',
             'cantidad' => 'required|array',
             'cantidad.*' => 'required|integer|min:1|max:999999',
@@ -52,8 +51,6 @@ class ComprasController extends Controller
             'fecha.date' => 'El campo de fecha debe ser una fecha válida.',
             'metodo.required' => 'El campo de método de pago es obligatorio.',
             'metodo.string' => 'El campo de método de pago debe ser una cadena de texto.',
-            'total.required' => 'El campo de total es obligatorio.',
-            'total.numeric' => 'El campo de total debe ser un número.',
             'aceites.required' => 'La compra debe tener productos.',
             'aceites.array' => 'Error en el formato de aceites.',
             'cantidad.required' => 'Se debe incluir al menos una cantidad de producto.',
@@ -78,11 +75,22 @@ class ComprasController extends Controller
 
         $idCliente = $request->input('id_cliente');
 
+        $productIds = $request->input('aceites');
+        $quantities = $request->input('cantidad');
+
+        $total = 0;
+
+        foreach ($productIds as $key => $productId) {
+            $precioAceite = Aceite::find($productId)->precio;
+
+            $total += $precioAceite * $quantities[$key];
+        }
+
         $compra = new Compras();
         $compra->id_cliente = $idCliente;
         $compra->fecha = $request->fecha;
         $compra->metodo = $request->metodo;
-        $compra->total = $request->total;
+        $compra->total = $total;
         $compra->save();
 
         foreach ($request->aceites as $key => $aceiteId) {
@@ -139,7 +147,6 @@ class ComprasController extends Controller
         $request->validate([
             'fecha' => 'required|date',
             'metodo' => 'required|string',
-            'total' => 'required|numeric',
             'aceites' => 'required|array',
             'cantidad' => 'required|array',
             'cantidad.*' => 'required|integer|min:1|max:999999',
@@ -150,8 +157,6 @@ class ComprasController extends Controller
             'fecha.date' => 'El campo de fecha debe ser una fecha válida.',
             'metodo.required' => 'El campo de método de pago es obligatorio.',
             'metodo.string' => 'El campo de método de pago debe ser una cadena de texto.',
-            'total.required' => 'El campo de total es obligatorio.',
-            'total.numeric' => 'El campo de total debe ser un número.',
             'aceites.required' => 'La compra debe tener productos.',
             'aceites.array' => 'Error en el formato de aceites.',
             'cantidad.required' => 'Se debe incluir al menos una cantidad de producto.',
@@ -181,11 +186,22 @@ class ComprasController extends Controller
         if (!$compras) {
             return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');
         }
+
+        $productIds = $request->input('aceites');
+        $quantities = $request->input('cantidad');
+
+        $total = 0;
+
+        foreach ($productIds as $key => $productId) {
+            $precioAceite = Aceite::find($productId)->precio;
+
+            $total += $precioAceite * $quantities[$key];
+        }
         
         $compras->id_cliente = $idCliente;
         $compras->fecha = $request->fecha;
         $compras->metodo = $request->metodo;
-        $compras->total = $request->total;
+        $compras->total = $total;
         $compras->save();
 
         $productIds = $request->input('aceites');

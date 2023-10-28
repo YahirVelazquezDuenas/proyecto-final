@@ -79,6 +79,7 @@
                             <th>ID_detalle</th>
                             <th>ID_aceite</th>
                             <th>Aceite</th>
+                            <th>Precio</th>
                             <th>Cantidad</th>
                         </tr>
                         @foreach ($compras->detallesCompras as $detalle)
@@ -86,6 +87,7 @@
                                 <td>{{ $detalle->id_detalle }}</td>
                                 <td>{{ $detalle->aceite->id_aceite }}</td>
                                 <td>{{ $detalle->aceite->nombre }}</td>
+                                <td>{{ $detalle->aceite->precio }}</td>
                                 <td>{{ $detalle->cantidad }}</td>
                             </tr>
                         @endforeach

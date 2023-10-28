@@ -26,18 +26,25 @@ class DatabaseSeeder extends Seeder
         User::factory(5)->create();
         Aceite::factory(5)->create();
         Compras::factory(5)->create()->each(function ($compra) {
-            $cantidadDetalles = rand(2, 5);
-            $aceitesIds = Aceite::pluck('id_aceite')->toArray();
-            $uniqueAceitesIds = array_unique($aceitesIds);
-            $randomAceitesIds = Arr::random($uniqueAceitesIds, $cantidadDetalles);
+            $aceites = Aceite::inRandomOrder()->limit(rand(2, 5))->get();
 
-            for ($i = 0; $i < $cantidadDetalles; $i++) {
+            $total = 0;
+
+            foreach ($aceites as $aceite) {
+                $cantidad = rand(1, 10);
+                $precio = $aceite->precio;
+                $total += $cantidad * $precio;
+
                 DetalleCompra::create([
                     'id_compra' => $compra->id_compra,
-                    'id_aceite' => $randomAceitesIds[$i],
-                    'cantidad' => rand(1, 10),
+                    'id_aceite' => $aceite->id_aceite,
+                    'cantidad' => $cantidad,
                 ]);
             }
+
+            $compra->total = $total;
+            $compra->save();
         });
     }
+
 }

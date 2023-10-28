@@ -69,6 +69,10 @@
                                 <td>{{ $aceite->marca }}</td>
                             </tr>
                             <tr>
+                                <td>Precio</td>
+                                <td>{{ $aceite->precio }}</td>
+                            </tr>
+                            <tr>
                                 <td>Descripción</td>
                                 <td>{{ $aceite->descripcion }}</td>
                             </tr>

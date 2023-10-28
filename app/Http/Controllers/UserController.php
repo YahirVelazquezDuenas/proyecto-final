@@ -28,7 +28,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        $role = Role::find($request->role);
+        $role = '1';
         $user->role()->associate($role);
         $user->save();
 

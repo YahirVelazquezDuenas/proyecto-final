@@ -38,6 +38,7 @@ class AceiteController extends Controller
             'cantidad' => 'nullable|numeric|max:999999.99|min:0',
             'marca' => 'nullable|string|max:255',
             'descripcion' => 'string|unique:aceites|max:255',
+            'precio'=>'required|numeric|max:999999.99|min:0'
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
             'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
@@ -52,6 +53,10 @@ class AceiteController extends Controller
             'descripcion.string' => 'El campo descripción debe ser una cadena de texto.',
             'descripcion.max'=>'El campo descripción no puede tener más de 255 caracteres',
             'descripcion.unique' => 'La descripción ya está en uso.',
+            'precio.required' => 'El campo precio es obligatorio.',
+            'precio.numeric' => 'El campo precio debe ser un número.',
+            'precio.max'=>'El campo precio no puede ser mayor a 999,999.99',
+            'precio.min' => 'El campo precio no puede ser negativo.',
         ]);
 
         $aceite = new Aceite();
@@ -60,6 +65,7 @@ class AceiteController extends Controller
         $aceite->cantidad = $request->cantidad;
         $aceite->marca = $request->marca;
         $aceite->descripcion = $request->descripcion;
+        $aceite->precio=$request->precio;
         if ($aceite->save()) {
             return redirect('/aceite')->with('success', 'Aceite registrado correctamente.');
         } else {
@@ -103,9 +109,10 @@ class AceiteController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'tipo' => 'nullable|string|max:255',
-            'cantidad' => 'nullable|numeric|max:999999.99',
+            'cantidad' => 'nullable|numeric|max:999999.99|min:0',
             'marca' => 'nullable|string|max:255',
             'descripcion' => 'string|unique:aceites|max:255',
+            'precio'=>'required|numeric|max:999999.99|min:0'
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
             'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
@@ -114,11 +121,16 @@ class AceiteController extends Controller
             'tipo.max'=>'El campo tipo no puede tener más de 255 caracteres',
             'cantidad.numeric' => 'El campo cantidad debe ser un número.',
             'cantidad.max'=>'El campo cantidad no puede ser mayor a 999,999.99',
+            'cantidad.min' => 'El campo cantidad no puede ser negativo.',
             'marca.string' => 'El campo marca debe ser una cadena de texto.',
             'marca.max'=>'El campo marca no puede tener más de 255 caracteres',
             'descripcion.string' => 'El campo descripción debe ser una cadena de texto.',
             'descripcion.max'=>'El campo descripción no puede tener más de 255 caracteres',
             'descripcion.unique' => 'La descripción ya está en uso.',
+            'precio.required' => 'El campo precio es obligatorio.',
+            'precio.numeric' => 'El campo precio debe ser un número.',
+            'precio.max'=>'El campo precio no puede ser mayor a 999,999.99',
+            'precio.min' => 'El campo precio no puede ser negativo.',
         ]);
         $aceite = Aceite::find($id);
     
@@ -130,6 +142,7 @@ class AceiteController extends Controller
         $aceite->cantidad = $request->cantidad;
         $aceite->marca = $request->marca;
         $aceite->descripcion = $request->descripcion;
+        $aceite->precio=$request->precio;
         $aceite->save();
         return redirect()->route('aceite.index')->with('success', 'El aceite se ha actualizado con éxito.');
     }

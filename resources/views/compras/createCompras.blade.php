@@ -92,9 +92,6 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="pagar">
-                                            <label for="total">Total a pagar: $</label>
-                                            <input type="text" id="total" name="total" placeholder="1222.99" value="{{ old('total') }}">
                                         </div><br><br>
                                         <div class="field">
                                             <div class="control">

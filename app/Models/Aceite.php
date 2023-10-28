@@ -15,7 +15,7 @@ class Aceite extends Model
         return $this->hasMany(DetalleCompra::class, 'id_aceite', 'id_aceite');
     }
 
-    protected $fillable = ['nombre', 'tipo', 'cantidad', 'marca', 'descripcion'];
+    protected $fillable = ['nombre', 'tipo', 'cantidad', 'marca', 'descripcion', 'precio'];
     protected $guarded = ['id_aceite'];
 
 }
