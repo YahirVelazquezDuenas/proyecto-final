@@ -69,6 +69,13 @@ class ComprasController extends Controller
             'cantidad.*.max' => 'La cantidad no puede ser mayor que 999999.'
         ]);
 
+        $aceitesSeleccionados = $request->aceites;
+        $aceitesUnicos = array_unique($aceitesSeleccionados);
+
+        if (count($aceitesSeleccionados) !== count($aceitesUnicos)) {
+            return redirect()->back()->with('error', 'No puedes seleccionar el mismo aceite más de una vez en la misma compra.');
+        }
+
         $idCliente = $request->input('id_cliente');
 
         $compra = new Compras();
@@ -114,12 +121,14 @@ class ComprasController extends Controller
     public function edit($id)
     {
         $compras = Compras::find($id);
+        $aceites = Aceite::all();
+        $clientes = Cliente::all();
 
         if (!$compras) {
             return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');
         }
 
-        return view('/compras/editCompras', ['compras' => $compras]);
+        return view('/compras/editCompras', ['compras' => $compras, 'aceites' => $aceites, 'clientes' => $clientes]);
     }
 
     /**
@@ -131,6 +140,11 @@ class ComprasController extends Controller
             'fecha' => 'required|date',
             'metodo' => 'required|string',
             'total' => 'required|numeric',
+            'aceites' => 'required|array',
+            'cantidad' => 'required|array',
+            'cantidad.*' => 'required|integer|min:1|max:999999',
+            'aceites.*' => 'required|integer|exists:aceites,id_aceite',
+            'id_cliente' => 'required|integer|exists:clientes,id_cliente'
         ], [
             'fecha.required' => 'El campo de fecha es obligatorio.',
             'fecha.date' => 'El campo de fecha debe ser una fecha válida.',
@@ -138,18 +152,55 @@ class ComprasController extends Controller
             'metodo.string' => 'El campo de método de pago debe ser una cadena de texto.',
             'total.required' => 'El campo de total es obligatorio.',
             'total.numeric' => 'El campo de total debe ser un número.',
+            'aceites.required' => 'La compra debe tener productos.',
+            'aceites.array' => 'Error en el formato de aceites.',
+            'cantidad.required' => 'Se debe incluir al menos una cantidad de producto.',
+            'cantidad.array' => 'Error en el formato de cantidad.',
+            'cantidad.*' => 'Cada cantidad debe ser un número entero.',
+            'aceites.*.required' => 'Debes seleccionar al menos un aceite válido.',
+            'aceites.*.integer' => 'El ID del aceite debe ser un número entero.',
+            'aceites.*.exists' => 'El aceite seleccionado no está registrado.',
+            'id_cliente.required' => 'Debes seleccionar un cliente para la compra.',
+            'id_cliente.integer' => 'El ID del cliente debe ser un número entero.',
+            'id_cliente.exists' => 'El cliente seleccionado no está registrado.',
+            'cantidad.*.min' => 'La cantidad debe ser al menos 1.',
+            'cantidad.*.max' => 'La cantidad no puede ser mayor que 999999.'
         ]);
+
+        $aceitesSeleccionados = $request->aceites;
+        $aceitesUnicos = array_unique($aceitesSeleccionados);
+
+        if (count($aceitesSeleccionados) !== count($aceitesUnicos)) {
+            return redirect()->back()->with('error', 'No puedes seleccionar el mismo aceite más de una vez en la misma compra.');
+        }
+
+        $idCliente = $request->input('id_cliente');
     
         $compras = Compras::find($id);
     
         if (!$compras) {
             return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');
         }
-    
+        
+        $compras->id_cliente = $idCliente;
         $compras->fecha = $request->fecha;
         $compras->metodo = $request->metodo;
         $compras->total = $request->total;
         $compras->save();
+
+        $productIds = $request->input('aceites');
+        $quantities = $request->input('cantidad');
+
+        $compras->detallesCompras()->delete();
+
+        foreach ($productIds as $key => $productId) {
+            if ($productId && $quantities[$key]) {
+                $compras->detallesCompras()->create([
+                    'id_aceite' => $productId,
+                    'cantidad' => $quantities[$key],
+                ]);
+            }
+        }
     
         return redirect()->route('compras.index')->with('success', 'La compra se ha actualizado con éxito.');
     }

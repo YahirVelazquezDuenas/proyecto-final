@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -26,6 +27,10 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+
+        $role = Role::find($request->role);
+        $user->role()->associate($role);
+        $user->save();
 
         return redirect('/login')->with('success', '¡Registro exitoso! Por favor, inicia sesión.');
     }

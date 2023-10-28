@@ -42,18 +42,30 @@
                         <td>{{ $compra->total }}</td>
                     </tr>
                     <tr>
-                        <td>ID_detalle</td>
-                        <td>{{ $detalle->id_detalle }}</td>
-                    </tr>
-                    <tr>
-                        <td>ID_aceite</td>
-                        <td>{{ $detalle->id_aceite }}</td>
-                    </tr>
-                    <tr>
-                        <td>Cantidad</td>
-                        <td>{{ $detalle->cantidad }}</td>
-                    </tr>
-                </table>
+                            <td>ID del Cliente</td>
+                            <td>{{ $compra->cliente->id_cliente }}</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre del Cliente</td>
+                            <td>{{ $compra->cliente->nombre }}</td>
+                        </tr>
+                </table> 
+                <table>
+                        <tr>
+                            <th>ID_detalle</th>
+                            <th>ID_aceite</th>
+                            <th>Aceite</th>
+                            <th>Cantidad</th>
+                        </tr>
+                        @foreach ($compra->detallesCompras as $detalle)
+                            <tr>
+                                <td>{{ $detalle->id_detalle }}</td>
+                                <td>{{ $detalle->aceite->id_aceite }}</td>
+                                <td>{{ $detalle->aceite->nombre }}</td>
+                                <td>{{ $detalle->cantidad }}</td>
+                            </tr>
+                        @endforeach
+                    </table>   
                 <br><a href="{{ route('compras.edit', $compra->id_compra) }}" class="button is-primary">Editar Compra</a>
                 <form action="{{ route('compras.destroy', $compra->id_compra) }}" method="POST">
                     @csrf

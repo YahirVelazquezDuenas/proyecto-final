@@ -47,45 +47,43 @@
                                             <label for="tarjeta">Tarjeta</label>
                                         </div><br>
                                         </div>
-                                        <div class="field">
-                                            <label class="label">Selecciona un aceite y su cantidad:</label>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <select name="aceites[]">
-                                                        @foreach($aceites as $aceite)
-                                                            <option value="{{ $aceite->id_aceite }}">{{ $aceite->nombre }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
-                                            </div>
+                                        <label class="label">Selecciona un aceite y su cantidad:</label>
+                                                        <div class="control">
+                                                            <div class="select">
+                                                                <select name="aceites[]">
+                                                                    @foreach($aceites as $aceite)
+                                                                        <option value="{{ $aceite->id_aceite }}">{{ $aceite->nombre }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
+                                                        </div>
+                                        <div class="aceites-container">
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                                var contenedorAceites = document.querySelector(".aceites-container");
+                                                document.getElementById("agregarAceite").addEventListener("click", function() {
+                                                    var nuevoCampo = document.createElement("div");
+                                                    nuevoCampo.className = "field";
+                                                    nuevoCampo.innerHTML = `
+                                                        <label class="label">Selecciona un aceite y su cantidad:</label>
+                                                        <div class="control">
+                                                            <div class="select">
+                                                                <select name="aceites[]">
+                                                                    @foreach($aceites as $aceite)
+                                                                        <option value="{{ $aceite->id_aceite }}">{{ $aceite->nombre }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
+                                                        </div>
+                                                    `;
+                                                    contenedorAceites.appendChild(nuevoCampo);
+                                                });
+                                            });
+                                            </script>
                                         </div>
-                                        <div class="field">
-                                            <label class="label">Selecciona un aceite y su cantidad:</label>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <select name="aceites[]">
-                                                        @foreach($aceites as $aceite)
-                                                            <option value="{{ $aceite->id_aceite }}">{{ $aceite->nombre }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
-                                            </div>
-                                        </div>
-                                        <div class="field">
-                                            <label class="label">Selecciona un aceite y su cantidad:</label>
-                                            <div class="control">
-                                                <div class="select">
-                                                    <select name="aceites[]">
-                                                        @foreach($aceites as $aceite)
-                                                            <option value="{{ $aceite->id_aceite }}">{{ $aceite->nombre }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
-                                            </div>
-                                        </div>
+                                        <button type="button" id="agregarAceite">Agregar Aceite</button>
                                         <div class="cliente">
                                             <label for="id_cliente">Cliente:</label>
                                             <select id="id_cliente" name="id_cliente">

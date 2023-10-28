@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Aceite;
 use App\Models\Cliente;
 use App\Models\Compras;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticatedSessionController;
