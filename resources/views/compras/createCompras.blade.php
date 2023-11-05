@@ -55,8 +55,12 @@
                                                                         <option value="{{ $aceite->id_aceite }}">{{ $aceite->nombre }}</option>
                                                                     @endforeach
                                                                 </select>
+                                                            </div><br><br>
+                                                            <div class="field">
+                                                                <div class="control">
+                                                                    <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
+                                                                </div>
                                                             </div>
-                                                            <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
                                                         </div>
                                         <div class="aceites-container">
                                         <script>
@@ -66,7 +70,7 @@
                                                     var nuevoCampo = document.createElement("div");
                                                     nuevoCampo.className = "field";
                                                     nuevoCampo.innerHTML = `
-                                                        <label class="label">Selecciona un aceite y su cantidad:</label>
+                                                        <br><label class="label">Selecciona un aceite y su cantidad:</label>
                                                         <div class="control">
                                                             <div class="select">
                                                                 <select name="aceites[]">
@@ -74,7 +78,7 @@
                                                                         <option value="{{ $aceite->id_aceite }}">{{ $aceite->nombre }}</option>
                                                                     @endforeach
                                                                 </select>
-                                                            </div>
+                                                            </div><br><br>
                                                             <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
                                                         </div>
                                                     `;
@@ -82,8 +86,11 @@
                                                 });
                                             });
                                             </script>
-                                        </div>
-                                        <button type="button" id="agregarAceite">Agregar Aceite</button>
+                                        </div><br>
+                                        <div class="control">
+                                                <button class="button is-block is-info is-small is-fullwidth" type="button"
+                                                id="agregarAceite">Agregar Aceite</button>
+                                            </div><br>
                                         <div class="cliente">
                                             <label for="id_cliente">Cliente:</label>
                                             <select id="id_cliente" name="id_cliente">

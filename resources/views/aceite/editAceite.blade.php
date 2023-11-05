@@ -54,15 +54,15 @@
                             </div>
                         </div>
                         <br> 
-                        <div class="pagar">
-                                            <label for="total">Precio: $</label>
-                                            <input type="text" id="precio" name="precio" placeholder="122.99" value="{{ $aceite->precio }}">
-                                        </div><br><br>
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="descripcion" name="descripcion" placeholder="Descripción: Aceite para..." value="{{$aceite->descripcion}}" 
                                 rows="3" cols="40">
-                            </div>
+                        </div><br><br>
+                        <div class="pagar">
+                            <label for="total">Precio: $</label>
+                                <input type="text" id="precio" name="precio" placeholder="122.99" value="{{ $aceite->precio }}">
+                        </div>
                         </div>
                         <br>
                         <div class="field">

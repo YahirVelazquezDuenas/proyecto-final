@@ -35,7 +35,6 @@
                                 <input class="input" type="date" id="fecha" name="fecha" value="{{ $compras->fecha }}">
                             </div>
                         </div>
-
                         <div class="field">
                             <label class="label">Método de pago:</label>
                             <div class="control">
@@ -54,19 +53,19 @@
                             </div>
                         </div>
                         <div class="field">
-    <label class="label">Cliente:</label>
-    <div class="control">
-        <div class="select">
-            <select name="id_cliente">
-                @foreach($clientes as $cliente)
-                    <option value="{{ $cliente->id_cliente }}" {{ $compras->cliente->id_cliente == $cliente->id_cliente ? 'selected' : '' }}>
-                        {{ $cliente->nombre }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-    </div>
-</div>
+                            <label class="label">Cliente:</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select name="id_cliente">
+                                        @foreach($clientes as $cliente)
+                                            <option value="{{ $cliente->id_cliente }}" {{ $compras->cliente->id_cliente == $cliente->id_cliente ? 'selected' : '' }}>
+                                                {{ $cliente->nombre }}
+                                            </option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                        </div>
                         <div class="field">
                             <label class="label">Detalles de la compra:</label>
                             <div class="control">
@@ -79,19 +78,21 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <input class="input" type="number" name="cantidad[]" placeholder="Cantidad" value="{{ $detalle->cantidad }}">
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input" type="number" name="cantidad[]" placeholder="Cantidad" value="{{ $detalle->cantidad }}">
+                                            </div><br>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
-
                         <div class="field">
                             <div class="control">
                                 <button class="button is-block is-info is-large is-fullwidth" type="submit">Guardar cambios</button>
                             </div>
                         </div>
                     </form>
-
                     <form action="{{ route('compras.destroy', $compras->id_compra) }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -101,7 +102,6 @@
                             </div>
                         </div>
                     </form>
-
                     <br>
                     <p class="has-text-purple">
                         <a href="/compras">Regresar</a>

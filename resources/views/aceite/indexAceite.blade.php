@@ -69,12 +69,12 @@
                                 <td>{{ $aceite->marca }}</td>
                             </tr>
                             <tr>
-                                <td>Precio</td>
-                                <td>{{ $aceite->precio }}</td>
+                                <td>Descripcion</td>
+                                <td>{{ $aceite->descripcion }}</td>
                             </tr>
                             <tr>
-                                <td>Descripción</td>
-                                <td>{{ $aceite->descripcion }}</td>
+                                <td>Precio</td>
+                                <td>{{ $aceite->precio }}</td>
                             </tr>
                         </table>
                         <br><a href="{{ route('aceite.edit', $aceite->id_aceite) }}" class="button is-primary">Editar Aceite</a>

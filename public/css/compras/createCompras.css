@@ -90,3 +90,8 @@ p.subtitle {
 input[type="date"] {
     border: 2px solid blueviolet;
 }
+
+.cliente{
+
+    text-align: justify;
+}

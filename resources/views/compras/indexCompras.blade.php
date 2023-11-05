@@ -81,7 +81,7 @@
                             <th>Aceite</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
-                        </tr>
+                        </tr><br>
                         @foreach ($compras->detallesCompras as $detalle)
                             <tr>
                                 <td>{{ $detalle->id_detalle }}</td>
