@@ -8,6 +8,7 @@ use App\Models\Cliente;
 use Illuminate\Http\Request;
 use App\Models\DetalleCompra;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ComprasController extends Controller
 {
@@ -108,10 +109,16 @@ class ComprasController extends Controller
      * Display the specified resource.
      */
     public function show(Request $request)
-    {
+    {  
         $id = $request->input('id_compra');
         $compra = Compras::find($id);
         $detalle = DetalleCompra::find($id);
+
+        if (Gate::allows('view', $compra)) {
+            return view('compras.show', compact('compra'));
+        } else {
+            abort(403, 'No tienes permiso para ver esta compra.');
+        }
             
         if (!$compra) {
             return redirect()->back()->with('errorc', 'La compra no se encontró.');
@@ -235,5 +242,5 @@ class ComprasController extends Controller
         $compras->delete();
 
         return redirect()->route('compras.index')->with('success', 'La compra se ha eliminado con éxito.');
-    }
+    }  
 }
