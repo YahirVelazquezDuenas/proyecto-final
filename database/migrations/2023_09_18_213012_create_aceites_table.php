@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('marca')->nullable();
             $table->string('descripcion')->unique();
             $table->float('precio')->unique();
+            $table->string('archivo_ubicacion')->nullable();
+            $table->string('archivo_nombre')->nullable();
             $table->timestamps();
         });
     }

@@ -30,7 +30,7 @@
                                 @csrf
                                     <div class="fecha">
                                         <label for="fecha">Fecha de compra:</label>
-                                        <input type="date" id="fecha" name="fecha" placeholder="" value="{{ old('fecha') }}">
+                                        <input type="date" id="fecha" name="fecha" placeholder="" value="{{ old('fecha') }}" required>
                                     </div><br>
                                     <div class="metodo">
                                         Método de pago
@@ -58,7 +58,7 @@
                                                             </div><br><br>
                                                             <div class="field">
                                                                 <div class="control">
-                                                                    <input class="input" type="number" name="cantidad[]" placeholder="Cantidad">
+                                                                    <input class="input" type="number" name="cantidad[]" required placeholder="Cantidad">
                                                                 </div>
                                                             </div>
                                                         </div>

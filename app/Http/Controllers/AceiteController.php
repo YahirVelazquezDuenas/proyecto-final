@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Aceite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AceiteController extends Controller
 {
@@ -38,7 +39,8 @@ class AceiteController extends Controller
             'cantidad' => 'nullable|numeric|max:999999.99|min:0',
             'marca' => 'nullable|string|max:255',
             'descripcion' => 'string|unique:aceites|max:255',
-            'precio'=>'required|numeric|max:999999.99|min:0'
+            'precio'=> 'required|numeric|max:999999.99|min:0',
+            'archivo' => 'required|max:10000'
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
             'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
@@ -66,11 +68,20 @@ class AceiteController extends Controller
         $aceite->marca = $request->marca;
         $aceite->descripcion = $request->descripcion;
         $aceite->precio=$request->precio;
+        
+        if($request->file('archivo')->isValid()){
+
+            $request->file('archivo')->store('public/img');
+
+        }
+        $aceite->archivo_nombre = $request->file('archivo')->getClientOriginalName();
+        $aceite->archivo_ubicacion = $request->file('archivo')->store('public/img');
+
         if ($aceite->save()) {
             return redirect('/aceite')->with('success', 'Aceite registrado correctamente.');
         } else {
             return redirect()->back()->withErrors(['Error al guardar el aceite. Por favor, intenta de nuevo.']);
-        }
+        } 
     }
 
     /**
@@ -104,6 +115,7 @@ class AceiteController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -112,7 +124,9 @@ class AceiteController extends Controller
             'cantidad' => 'nullable|numeric|max:999999.99|min:0',
             'marca' => 'nullable|string|max:255',
             'descripcion' => 'string|unique:aceites|max:255',
-            'precio'=>'required|numeric|max:999999.99|min:0'
+            'precio'=>'required|numeric|max:999999.99|min:0',
+            'archivo' => 'max:10000'
+
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
             'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
@@ -143,6 +157,23 @@ class AceiteController extends Controller
         $aceite->marca = $request->marca;
         $aceite->descripcion = $request->descripcion;
         $aceite->precio=$request->precio;
+        //dd($request);
+        if ($request->hasFile('archivo') && $request->file('archivo')->isValid()) {
+            // Eliminar el archivo antiguo si existe
+            if ($aceite->archivo_ubicacion) {
+                Storage::delete($aceite->archivo_ubicacion); 
+            }
+
+            $aceite->archivo_nombre = $request->file('archivo')->getClientOriginalName();
+            $aceite->archivo_ubicacion = $request->file('archivo')->store('public/img');
+            //dd($aceite);
+        }
+            /*Eliminar las imagenes antiguas
+                Storage::delete($aceite->aceite_ubicacion);
+                $aceite->aceite_ubicacion->delete();
+            
+                $aceite->archivo_nombre = $request->file('archivo')->getClientOriginalName();
+                $aceite->archivo_ubicacion = $request->file('archivo')->store('public/img');*/
         $aceite->save();
         return redirect()->route('aceite.index')->with('success', 'El aceite se ha actualizado con éxito.');
     }
@@ -154,6 +185,13 @@ class AceiteController extends Controller
     {
         $aceite = Aceite::find($id);
 
+        if ($aceite->archivo_ubicacion) {
+            Storage::delete($aceite->archivo_ubicacion);
+        }
+    
+        // Eliminar el modelo de la base de datos
+        $aceite->delete();
+
         if (!$aceite) {
             return redirect()->route('aceite.index')->with('error', 'El aceite no se encontró.');
         }
@@ -161,5 +199,30 @@ class AceiteController extends Controller
         $aceite->delete();
 
         return redirect()->route('aceite.index')->with('success', 'El aceite se ha eliminado con éxito.');
+    }
+
+    public function descargar(Aceite $aceite){
+
+        return Storage::download($aceite->archivo_ubicacion, $aceite->archivo_nombre);
+
+    }
+
+
+    public function destroyArchivo(Aceite $aceite)
+    {
+        // Verificar si hay un archivo asociado y eliminarlo
+        if ($aceite->archivo_ubicacion) {
+            Storage::delete($aceite->archivo_ubicacion);
+
+            // Limpiar los campos de archivo en el modelo Aceite
+            $aceite->update([
+                'archivo_nombre' => null,
+                'archivo_ubicacion' => null,
+            ]);
+
+            return redirect()->back()->with('success', 'Archivo eliminado correctamente.');
+        }
+
+        return redirect()->back()->with('error', 'No hay archivo asociado para eliminar.');
     }
 }

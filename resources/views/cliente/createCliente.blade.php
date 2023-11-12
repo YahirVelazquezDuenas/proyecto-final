@@ -31,22 +31,22 @@
                             <div class="field">
                                 <div class="control">
                                     <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Pedro Castro Salcedo"
-                                    autofocus="" value="{{ old('nombre') }}">
+                                    autofocus="" value="{{ old('nombre') }}" required>
                                 </div>
                             </div><br>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="direccion" name="direccion" placeholder="Dirección: Av. Sim 9877-21. Col. Pachín." value="{{ old('direccion') }}">
+                                    <input class="input is-large" type="text" id="direccion" name="direccion" placeholder="Dirección: Av. Sim 9877-21. Col. Pachín." value="{{ old('direccion') }}" required>
                                 </div>
                             </div><br>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="telefono" name="telefono" placeholder="Teléfono: +52 123 456 7890" value="{{ old('telefono') }}"><em><strong>No se permiten menos de diez digitos</strong></em>
+                                    <input class="input is-large" type="text" id="telefono" name="telefono" placeholder="Teléfono: +52 123 456 7890" required value="{{ old('telefono') }}"><em><strong>No se permiten menos de diez digitos</strong></em>
                                 </div>
                             </div><br>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" value="{{ old('correo') }}">
+                                    <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" value="{{ old('correo') }}" required>
                                 </div>
                             </div><br>
                             <div class="field">

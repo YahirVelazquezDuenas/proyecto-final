@@ -76,12 +76,27 @@
                                 <td>Precio</td>
                                 <td>{{ $aceite->precio }}</td>
                             </tr>
+                            @if ($aceite->archivo_nombre && $aceite->archivo_ubicacion && Storage::exists($aceite->archivo_ubicacion))
+                                <tr>
+                                    <td>Archivo</td>                    
+                                    <td><a href="{{ route('aceite.descarga', $aceite)}}">{{ $aceite->archivo_nombre}}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Imagen</td>
+                                    <td><img src="{{ \Storage::url($aceite->archivo_ubicacion)}}" alt="Esta es una imagen"></td>
+                                </tr>
+                            @endif   
                         </table>
                         <br><a href="{{ route('aceite.edit', $aceite->id_aceite) }}" class="button is-primary">Editar Aceite</a>
                         <form action="{{ route('aceite.destroy', $aceite->id_aceite) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <br><button type="submit" class="button is-danger">Eliminar Aceite</button>
+                        </form><br>
+                        <form action="{{ route('aceite.eliminar-archivo', $aceite->id_aceite) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="button is-warning">Eliminar Archivo</button>
                         </form><br>
                     </ul>
                 @endforeach 

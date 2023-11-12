@@ -32,7 +32,7 @@
                         <div class="field">
                             <label class="label" for="fecha">Fecha de compra:</label>
                             <div class="control">
-                                <input class="input" type="date" id="fecha" name="fecha" value="{{ $compras->fecha }}">
+                                <input class="input" type="date" id="fecha" name="fecha" value="{{ $compras->fecha }} required">
                             </div>
                         </div>
                         <div class="field">

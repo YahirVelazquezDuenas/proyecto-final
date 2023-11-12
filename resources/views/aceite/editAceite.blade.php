@@ -20,7 +20,7 @@
                     <hr class="login-hr">
                     <p class="subtitle has-text-white">Ingresa los nuevos datos</p>
                     <div class="box">
-                        <form action="{{ route('aceite.update', $aceite->id_aceite) }}" method="POST">
+                        <form action="{{ route('aceite.update', $aceite->id_aceite) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <x-validation-errors :errors="$errors" class="mb-4" />
@@ -32,7 +32,7 @@
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Diesel LSD"
-                                autofocus="" value="{{$aceite->nombre}}">
+                                autofocus="" value="{{$aceite->nombre}}" required>
                             </div>
                         </div>
                         <br>
@@ -61,8 +61,22 @@
                         </div><br><br>
                         <div class="pagar">
                             <label for="total">Precio: $</label>
-                                <input type="text" id="precio" name="precio" placeholder="122.99" value="{{ $aceite->precio }}">
+                                <input type="text" id="precio" name="precio" placeholder="122.99" value="{{ $aceite->precio }}" required>
                         </div>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <div class="control">
+                                <label for="archivo">Archivo:</label>
+                                <input type="file" name="archivo" id="archivo">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <div class="control">
+                                <label for="archivo">Imagen:</label>
+                                <img src="{{ \Storage::url($aceite->archivo_ubicacion)}}" alt="Esta es una imagen">
+                            </div>
                         </div>
                         <br>
                         <div class="field">

@@ -26,12 +26,12 @@
                             {{ session('error') }}
                         </div>
                     @endif
-                        <form action="{{ url('/aceite') }}" method="POST"> 
+                        <form action="{{ url('/aceite') }}" method="POST" enctype="multipart/form-data"> 
                         @csrf
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Diesel LSD"
-                                autofocus="" value="{{ old('nombre') }}">
+                                autofocus="" value="{{ old('nombre') }}" required>
                             </div>
                         </div>
                         <br>
@@ -60,9 +60,12 @@
                             </div>
                         </div>
                         <div class="pagar">
-                                            <label for="total">Precio: $</label>
-                                            <input type="text" id="precio" name="precio" placeholder="122.99" value="{{ old('precio') }}">
-                                        </div><br><br>
+                                <label for="total">Precio: $</label>
+                                    <input type="text" id="precio" name="precio" placeholder="122.99" value="{{ old('precio') }}" required>
+                        </div><br><br>
+                        <br>
+                        <label for="archivo">Cargar Archivo:</label>
+                        <input type="file" name="archivo" id="archivo" required>
                         <br>
                         <div class="field">
                             <div class="control">
