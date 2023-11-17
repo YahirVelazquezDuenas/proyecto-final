@@ -10,6 +10,7 @@ use App\Models\Compras;
 use App\Models\DetalleCompra;
 use Illuminate\Support\Arr;
 use App\Models\Role;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,8 +23,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('soyadmin'),
             'role_id' => Role::where('name', 'administrador')->first()->id,
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
         ]);
-        User::factory(5)->create();
         Aceite::factory(5)->create();
         Compras::factory(5)->create()->each(function ($compra) {
             $aceites = Aceite::inRandomOrder()->limit(rand(2, 5))->get();

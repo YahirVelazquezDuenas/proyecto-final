@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Aceite extends Model
 {
@@ -17,5 +18,9 @@ class Aceite extends Model
 
     protected $fillable = ['nombre', 'tipo', 'cantidad', 'marca', 'descripcion', 'precio', 'archivo_ubicacion', 'archivo_nombre'];
     protected $guarded = ['id_aceite'];
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
 }

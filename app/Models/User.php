@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -63,4 +64,18 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function cliente()
+    {
+        return $this->hasOne(Cliente::class, 'user_id');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role_id === 2;
+    }
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 }

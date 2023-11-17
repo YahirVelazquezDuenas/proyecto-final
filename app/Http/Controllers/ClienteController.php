@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
+namespace App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
+
+
 class ClienteController extends Controller
 {
     /**
@@ -34,8 +38,8 @@ class ClienteController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
-            'telefono' => 'required|string|regex:/^(\+\d{1,3})?[- .]?\(?(\d{3})\)?[- .]?(\d{3})[- .]?(\d{4})$/|unique:clientes',
-            'correo' => 'required|string|email|unique:clientes|max:255',
+            'telefono' => 'required|string|unique:clientes',
+            'correo' => 'required|string|email|max:255|unique:clientes',
             'comentario' => 'nullable|string|max:255',
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
@@ -46,7 +50,6 @@ class ClienteController extends Controller
             'direccion.max' => 'El campo dirección no puede tener más de 255 caracteres.',
             'telefono.required' => 'El campo teléfono es obligatorio.',
             'telefono.string' => 'El campo teléfono debe ser una cadena de texto.',
-            'telefono.regex' => 'El campo teléfono debe tener un formato +55 123 456 7890.',
             'telefono.unique' => 'El teléfono ya está en uso.',
             'correo.required' => 'El campo correo es obligatorio.',
             'correo.string' => 'El campo correo debe ser una cadena de texto.',
@@ -56,13 +59,15 @@ class ClienteController extends Controller
             'comentario.string' => 'El campo comentario debe ser una cadena de texto.',
             'comentario.max' => 'El comentario no puede tener más de 255 caracteres.'
         ]);
-        $cliente = new Cliente();
-        $cliente->nombre = $request->nombre;
-        $cliente->direccion = $request->direccion;
-        $cliente->telefono = $request->telefono;
-        $cliente->correo = $request->correo;
-        $cliente->comentario = $request->comentario;
-        $cliente->save();
+        
+            $cliente = new Cliente();
+            $cliente->nombre = $request->nombre;
+            $cliente->telefono = $request->telefono;
+            $cliente->correo = $request->correo;
+            $cliente->direccion = $request->direccion;
+            $cliente->comentario = $request->comentario;
+            $cliente->user_id = auth()->id();
+            $cliente->save();
     
         return redirect('/cliente')->with('success', 'Cliente registrado correctamente.');
     }
@@ -103,8 +108,8 @@ class ClienteController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
-            'telefono' => 'required|string|regex:/^(\+\d{1,3})?[- .]?\(?(\d{3})\)?[- .]?(\d{3})[- .]?(\d{4})$/|unique:clientes',
-            'correo' => 'required|string|email|unique:clientes',
+            'telefono' => 'required|string|unique:clientes,telefono,' . $id . ',id_cliente',
+            'correo' => 'required|string|email|unique:clientes,correo,' . $id . ',id_cliente',
             'comentario' => 'nullable|string',
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
@@ -115,7 +120,6 @@ class ClienteController extends Controller
             'direccion.max' => 'El campo dirección no puede tener más de 255 caracteres.',
             'telefono.required' => 'El campo teléfono es obligatorio.',
             'telefono.string' => 'El campo teléfono debe ser una cadena de texto.',
-            'telefono.regex' => 'El campo teléfono debe tener un formato +55 1 55 1234 5678.',
             'telefono.unique' => 'El teléfono ya está en uso.',
             'correo.required' => 'El campo correo es obligatorio.',
             'correo.string' => 'El campo correo debe ser una cadena de texto.',
@@ -123,18 +127,18 @@ class ClienteController extends Controller
             'correo.unique' => 'El correo electrónico ya está en uso.',
             'comentario.string' => 'El campo comentario debe ser una cadena de texto.',
         ]);
-    
         $cliente = Cliente::find($id);
     
         if (!$cliente) {
             return redirect()->route('cliente.index')->with('error', 'El cliente no se encontró.');
         }
-                
         $cliente->nombre = $request->nombre;
-        $cliente->direccion = $request->direccion;
+        
         $cliente->telefono = $request->telefono;
         $cliente->correo = $request->correo;
+        $cliente->direccion = $request->direccion;
         $cliente->comentario = $request->comentario;
+        $cliente->user_id = $request->input('original_user_id');
         $cliente->save();
 
         return redirect()->route('cliente.index')->with('success', 'El cliente se ha actualizado con éxito.');

@@ -16,12 +16,14 @@ class ClienteFactory extends Factory
 
     public function definition()
     {
+
         return [
             'nombre' => $this->faker->name,
             'direccion' => $this->faker->address,
             'telefono' => $this->faker->phoneNumber,
             'correo' => $this->faker->unique()->safeEmail,
             'comentario' => $this->faker->sentence,
+            'user_id' => \App\Models\User::factory(),
         ];
     }
 }

@@ -123,7 +123,7 @@ class AceiteController extends Controller
             'tipo' => 'nullable|string|max:255',
             'cantidad' => 'nullable|numeric|max:999999.99|min:0',
             'marca' => 'nullable|string|max:255',
-            'descripcion' => 'string|unique:aceites|max:255',
+            'descripcion' => 'string|max:255|unique:aceites,descripcion,' . $id . ',id_aceite',
             'precio'=>'required|numeric|max:999999.99|min:0',
             'archivo' => 'max:10000'
 

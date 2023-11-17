@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('archivo_ubicacion')->nullable();
             $table->string('archivo_nombre')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('metodo')->nullable(false);
             $table->float('total')->nullable(false);
             $table->timestamps();
-
+            $table->softDeletes();
             $table->foreign('id_cliente')->references('id_cliente')->on('clientes')->onDelete('cascade');
         });
     }

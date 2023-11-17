@@ -51,6 +51,7 @@
                                 <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" value="{{$cliente->correo}}"">
                             </div>
                         </div><br>
+                        <input type="hidden" name="original_user_id" value="{{ $cliente->user_id }}">
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Soy un nuevo ciente." value="{{$cliente->comentario}}">
