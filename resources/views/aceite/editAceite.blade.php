@@ -25,7 +25,7 @@
                         @method('PUT')
                         <x-validation-errors :errors="$errors" class="mb-4" />
                         @if(session('error'))
-                            <div class="alert alert-danger">
+                            <div class="error-message">
                                 {{ session('error') }}
                             </div>
                         @endif
@@ -56,7 +56,7 @@
                         <br> 
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="descripcion" name="descripcion" placeholder="Descripción: Aceite para..." value="{{$aceite->descripcion}}" 
+                                <input class="input is-large" type="text" id="descripcion" name="descripcion" placeholder="Descripción: Aceite para..." value="{{$aceite->descripcion}} required" 
                                 rows="3" cols="40">
                         </div><br><br>
                         <div class="pagar">

@@ -13,21 +13,27 @@
 <body>
 <section class="hero is-success is-fullheight">
     <x-barra></x-barra> 
+    
         @if(session('error'))
-            <div class="alert alert-danger">
+        <div class="error-message">
                 {{ session('error') }}
             </div>
         @endif
         @if(session('success'))
-            <div class="alert alert-success">
+        <div class="success-message">
                 {{ session('success') }}
             </div>
         @endif
         <div class="container">
             <h1 class="title" style="color: black;">Principal de Aceites</h1>
-                <br><a href="{{ url('/aceite/create') }}" class="button is-block is-info">
-                Registrar un nuevo aceite
-                </a><br><br>
+                <br>
+            @auth
+                @if(auth()->user()->isAdmin())
+                    <a href="{{ url('/aceite/create') }}" class="button is-block is-info">
+                    Registrar un nuevo aceite
+                    </a><br><br>
+                @endif
+            @endauth
             <form action="{{ url('/aceite/showAceite') }}" method="GET"> 
             <div class="sub">
                 <label for="id">ID de aceite a buscar:</label>
@@ -36,6 +42,7 @@
             <label for="enviar"></label>
             <input type="submit" class="button is-block is-info is-large is-fullwidth" id="enviar" name="enviar">
             </form>
+            @if($aceiteIndex->isNotEmpty())
             <br><h2 class="title" style="color: black;">Tablas de aceites registrados</h2>
                 @foreach ($aceiteIndex as $aceite)
                     <ul>
@@ -87,6 +94,8 @@
                                 </tr>
                             @endif   
                         </table>
+                        @auth
+                        @if(auth()->user()->isAdmin())
                         <br><a href="{{ route('aceite.edit', $aceite->id_aceite) }}" class="button is-primary">Editar Aceite</a>
                         <form action="{{ route('aceite.destroy', $aceite->id_aceite) }}" method="POST">
                             @csrf
@@ -98,8 +107,12 @@
                         @method('DELETE')
                         <button type="submit" class="button is-warning">Eliminar Archivo</button>
                         </form><br>
+                        @endif
+                        @endauth
+                        <br><br>
                     </ul>
                 @endforeach 
+                @endif
                         </center>
         </div>
     <x-derechos></x-derechos>

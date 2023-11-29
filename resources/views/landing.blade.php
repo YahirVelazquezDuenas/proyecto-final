@@ -19,6 +19,17 @@
   <body>
     <section class="hero is-success">
       <x-barra></x-barra> 
+      
+      @if(session('errorc'))
+         <div class="error-message">   
+                {{ session('errorc') }}
+            </div>
+        @endif
+        @if(session('success'))
+            <div class="success-message">
+                {{ session('success') }}
+            </div>
+        @endif
     </section>
     <!-- End Scroll Up Button -->
     <!-- Begin Header -->

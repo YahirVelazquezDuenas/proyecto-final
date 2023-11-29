@@ -18,11 +18,11 @@ class Aceite extends Model
 
     public function setPrecioAttribute($value)
     {
-        $this->attributes['precio'] = $value * 17.13;
+        $this->attributes['precio'] = $value;
     }
     public function getPrecioAttribute($value)
     {
-        return $value / 17.13;
+        return $value;
     }
 
     protected $fillable = ['nombre', 'tipo', 'cantidad', 'marca', 'descripcion', 'precio', 'archivo_ubicacion', 'archivo_nombre'];

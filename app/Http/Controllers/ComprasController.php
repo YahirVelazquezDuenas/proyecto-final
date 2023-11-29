@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Compras;
 use App\Models\Aceite;
 use App\Models\Cliente;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\DetalleCompra;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+
 
 class ComprasController extends Controller
 {
@@ -17,20 +20,38 @@ class ComprasController extends Controller
      */
     public function index()
     {
-        $compras= new Compras ();
+        $user = Auth::user();
+        $cliente = $user->cliente;
+        if ($user->isAdmin()) {
+            $comprasIndex = Compras::with('cliente')->get();
+        } else if(!$user->isAdmin() and $cliente){
+            $comprasIndex = Compras::with('cliente')->where('id_cliente', $user->cliente->id_cliente)->get();
+        }
+        else{
+            $comprasIndex = collect();
+        }
 
-        $comprasIndex = Compras::with('cliente')->get();
         $detalleIndex = DetalleCompra::all();
-
-        return view('compras/indexCompras', compact ('comprasIndex', 'detalleIndex'));
+        return view('compras/indexCompras', compact('comprasIndex', 'detalleIndex'));
     }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
+
+        $user = Auth::user();
+        $cliente = $user->cliente;
+        if (!$user->isAdmin() and $cliente) {
+            $aceites = Aceite::all();
+            $clientes = [$cliente];
+            return view('compras/createCompras',compact('aceites','clientes'));
+        }
+        else if(!$user->isAdmin()){
+            return redirect()->back()->with('errorc', 'Necesitas crear un cliente para este usuario.');
+        }
         $aceites = Aceite::all();
-        $clientes = Cliente::all();
+        $clientes = Cliente::all();    
         return view('compras/createCompras',compact('aceites','clientes'));
     }
 
@@ -127,9 +148,6 @@ class ComprasController extends Controller
         return view('/compras/showCompras', ['compra' => $compra, 'detalle' => $detalle]);
     }
 
-    //si quisieramos pasar solo el id, se podría hacer el find directamente y colocarlo en la URL
-
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -138,6 +156,12 @@ class ComprasController extends Controller
         $compras = Compras::find($id);
         $aceites = Aceite::all();
         $clientes = Cliente::all();
+
+        if (Gate::allows('view', $compras)) {
+            return view('compras.show', compact('compra'));
+        } else {
+            abort(403, 'No tienes permiso para ver esta compra.');
+        }
 
         if (!$compras) {
             return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');

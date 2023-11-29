@@ -13,13 +13,14 @@
 <body>
 <section class="hero is-success is-fullheight">
     <x-barra></x-barra> 
+    
         @if(session('error'))
-            <div class="alert alert-danger">
+            <div class="error-message">
                 {{ session('error') }}
             </div>
         @endif
         @if(session('success'))
-            <div class="alert alert-success">
+            <div class="success-message">
                 {{ session('success') }}
             </div>
         @endif
@@ -36,6 +37,7 @@
                 <label for="enviar"></label>
                 <input type="submit" class="button is-block is-info is-large is-fullwidth" id="enviar" name="enviar">
             </form>
+            @if ($clienteIndex->isNotEmpty())
             <br><h2 class="title" style="color: black;">Tablas de clientes registrados</h2>
             @foreach ($clienteIndex as $cliente)
                 <ul>
@@ -81,6 +83,7 @@
                     </form><br>
                 </ul>
             @endforeach
+            @endif
                     </center>
         </div>
     <x-derechos></x-derechos>

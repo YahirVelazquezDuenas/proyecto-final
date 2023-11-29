@@ -24,31 +24,32 @@
                         @csrf
                         @method('PUT')
                         <x-validation-errors :errors="$errors" class="mb-4" />
+                        
                         @if(session('error'))
-                            <div class="alert alert-danger">
+                            <div class="error-message">
                                 {{ session('error') }}
                             </div>
                         @endif
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Pedro Castro Salcedo"
-                                autofocus="" value="{{$cliente->nombre}}">
+                                autofocus="" value="{{$cliente->nombre}}" required>
                             </div>
                         </div><br>
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="direccion" name="direccion" placeholder="Dirección: Av. Sim 9877-21. Col. Pachín."
-                                value="{{$cliente->direccion}}">
+                                value="{{$cliente->direccion}}" required>
                             </div>
                         </div><br>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="telefono" name="telefono" placeholder="Teléfono: +52 123 456 7890" value="{{$cliente->telefono}}"><br><em><strong>No se permiten menos de diez digitos</strong></em>
+                                <input class="input is-large" type="text" id="telefono" name="telefono" placeholder="Teléfono: +52 123 456 7890" value="{{$cliente->telefono}}" required><br><em><strong>No se permiten menos de diez digitos</strong></em>
                             </div>
                         </div><br>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" value="{{$cliente->correo}}"">
+                                <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" value="{{$cliente->correo}}" required>
                             </div>
                         </div><br>
                         <input type="hidden" name="original_user_id" value="{{ $cliente->user_id }}">

@@ -21,8 +21,9 @@
                     <p class="subtitle has-text-white">Por favor ingrese sus datos</p>
                     <div class="box">
                         <x-validation-errors :errors="$errors" class="mb-4" />
+                        
                         @if(session('error'))
-                            <div class="alert alert-danger">
+                            <div class="error-message">
                                 {{ session('error') }}
                             </div>
                         @endif

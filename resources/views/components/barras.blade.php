@@ -68,8 +68,6 @@
                 Volver</a>
                 <a class="navbar-item" href="{{ url('/landing') }}">
                 Inicio</a>
-                <a class="navbar-item" href="/aceite">
-                Aceites</a>
                 <a class="navbar-item" href="/login">
                 Iniciar sesión</a>
             </div>        

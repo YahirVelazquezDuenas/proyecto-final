@@ -38,7 +38,7 @@ class AceiteController extends Controller
             'tipo' => 'nullable|string|max:255',
             'cantidad' => 'nullable|numeric|max:999999.99|min:0',
             'marca' => 'nullable|string|max:255',
-            'descripcion' => 'string|unique:aceites|max:255',
+            'descripcion' => 'string|unique:aceites|max:255|required',
             'precio'=> 'required|numeric|max:999999.99|min:0',
             'archivo' => 'required|max:10000'
         ], [
@@ -53,12 +53,15 @@ class AceiteController extends Controller
             'marca.string' => 'El campo marca debe ser una cadena de texto.',
             'marca.max'=>'El campo marca no puede tener más de 255 caracteres',
             'descripcion.string' => 'El campo descripción debe ser una cadena de texto.',
+            'descripcion.required' => 'Describa las características del aceite.',
             'descripcion.max'=>'El campo descripción no puede tener más de 255 caracteres',
             'descripcion.unique' => 'La descripción ya está en uso.',
             'precio.required' => 'El campo precio es obligatorio.',
             'precio.numeric' => 'El campo precio debe ser un número.',
             'precio.max'=>'El campo precio no puede ser mayor a 999,999.99',
             'precio.min' => 'El campo precio no puede ser negativo.',
+            'archivo.required' =>'Se requiere un archivo para el registro',
+            'archivo.max' => 'Se puede un máximo de 1000'
         ]);
 
         $aceite = new Aceite();
@@ -126,7 +129,7 @@ class AceiteController extends Controller
             'marca' => 'nullable|string|max:255',
             'descripcion' => 'string|max:255|unique:aceites,descripcion,' . $id . ',id_aceite',
             'precio'=>'required|numeric|max:999999.99|min:0',
-            'archivo' => 'max:10000'
+            'archivo' => 'required|max:10000'
 
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
@@ -146,6 +149,8 @@ class AceiteController extends Controller
             'precio.numeric' => 'El campo precio debe ser un número.',
             'precio.max'=>'El campo precio no puede ser mayor a 999,999.99',
             'precio.min' => 'El campo precio no puede ser negativo.',
+            'archivo.required' =>'Se requiere un archivo para el registro',
+            'archivo.max' => 'Se puede un máximo de 1000'
         ]);
         $aceite = Aceite::find($id);
     

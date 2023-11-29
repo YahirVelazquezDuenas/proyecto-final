@@ -13,19 +13,21 @@
 <body>
 <section class="hero is-success is-fullheight">
     <x-barras></x-barras> 
+    
         @if(session('errorc'))
-            <div class="alert alert-danger">
+            <div class="error-message">
                 {{ session('errorc') }}
             </div>
         @endif
         @if(session('success'))
-            <div class="alert alert-success">
+            <div class="success-message">
                 {{ session('success') }}
             </div>
         @endif
         <div class="container">
             <h1 class="title" style="color: white;">Principal de Compras</h1>
-            <br><a href="{{ url('/compras/create') }}" class="button is-info is-fullwidth">
+            <br>
+            <a href="{{ url('/compras/create') }}" class="button is-info is-fullwidth">
                 Registrar una nueva compra
             </a><br><br>
             <form action="{{ url('/compras/showCompras') }}" method="GET"> 
@@ -36,6 +38,7 @@
                     <label for="enviar"></label>
                     <input type="submit" class="button is-block is-info is-large is-fullwidth" id="enviar" name="enviar">
             </form>
+            @if($comprasIndex ->isNotEmpty())
             <br><h2 class="title" style="color: white;">Tablas de compras registradas</h2>
             @foreach ($comprasIndex as $compras)
                 <ul> 
@@ -92,14 +95,17 @@
                             </tr>
                         @endforeach
                     </table>
-                    <br><a href="{{ route('compras.edit', $compras->id_compra) }}" class="button is-primary">Editar Compra</a>
+                    <br>
+                    <a href="{{ route('compras.edit', $compras->id_compra) }}" class="button is-primary">Editar Compra</a>
                     <form action="{{ route('compras.destroy', $compras->id_compra) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <br><button type="submit" class="button is-danger">Eliminar Compra</button>
                     </form><br>
+                    <br><br>
                 </ul>
             @endforeach
+            @endif
                     </center>
         </div>
     <x-derechos></x-derechos>

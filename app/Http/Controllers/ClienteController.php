@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Auth;
 namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\User;
+use App\Models\Compras;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,8 +16,17 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clienteIndex = Cliente::all();
-        return view('cliente/indexCliente', compact ('clienteIndex'));
+        $user = Auth::user();
+        $cliente = $user->cliente;
+        if ($user->isAdmin()) {
+            $clienteIndex = Cliente::all();
+        } else if(!$user->isAdmin() and $cliente){
+            $clienteIndex = Cliente::where('id_cliente', $user->cliente->id_cliente)->get();
+        }else{
+            $clienteIndex = collect();
+        }
+
+        return view('cliente/indexCliente', compact('clienteIndex'));
     }
 
     /**
@@ -80,11 +90,18 @@ class ClienteController extends Controller
     public function show(Request $request)
     {
         $id = $request->input('id_cliente');
-        $cliente = Cliente::find($id);
-            
-        if (!$cliente) {
-            return redirect()->back()->with('error', 'El cliente no se encontró.');
+        $user = Auth::user();
+
+        if ($user->isAdmin()) {
+            $cliente = Cliente::find($id);
+        } else {
+            $cliente = $user->cliente()->find($id);
         }
+
+        if (!$cliente) {
+            return redirect()->back()->with('error', 'El cliente no se encontró o no está asociado a tu cuenta.');
+        }
+
         return view('/cliente/showCliente', ['cliente' => $cliente]);
     }
 
@@ -95,11 +112,13 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::find($id);
 
-        if (!$cliente) {
-            return redirect()->route('cliente.index')->with('error', 'El cliente no se encontró.');
-        }
+        $user = Auth::user();
 
-        return view('/cliente/editCliente', ['cliente' => $cliente]);
+        if ($user->isAdmin() || ($cliente && $cliente->id_usuario === $user->id)) {
+            return view('/cliente/editCliente', ['cliente' => $cliente]);
+        } else {
+            return redirect()->route('cliente.index')->with('error', 'No tienes permisos para editar este cliente.');
+        }
     }
 
     /**
