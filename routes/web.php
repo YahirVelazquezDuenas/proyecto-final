@@ -54,12 +54,11 @@ Route::middleware(['auth'])->group(function() {
 
     //Rutas de compras
     Route::resource('compras', ComprasController::class);
+    // Route::get('/compras/{id}/edit', 'ComprasController@edit')->name('editCompras');
+    // Route::put('/compras/{id}', 'ComprasController@update')->name('updateCompras');
+    // Route::delete('/compras/{id}', 'ComprasController@destroy')->name('destroyCompras');
 
-    Route::get('/compras/{id}/edit', 'ComprasController@edit')->name('editCompras');
-    Route::put('/compras/{id}', 'ComprasController@update')->name('updateCompras');
-    Route::delete('/compras/{id}', 'ComprasController@destroy')->name('destroyCompras');
-
-    Route::post('/compras', 'ComprasController@store')->name('createCompras');    
+    // Route::post('/compras', 'ComprasController@store')->name('createCompras');    
 });
 //Route::get('/aceite/{id}', 'AceiteController@show')->name('showAceite');
 Route::post('/logout', [UserController::class, 'destroy'])->name('logout');
