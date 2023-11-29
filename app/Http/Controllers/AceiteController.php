@@ -82,6 +82,7 @@ class AceiteController extends Controller
         } else {
             return redirect()->back()->withErrors(['Error al guardar el aceite. Por favor, intenta de nuevo.']);
         } 
+
     }
 
     /**

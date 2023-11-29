@@ -13,17 +13,25 @@ class WelcomeController extends Controller
 {
      public function index()
     {
-        $numeroDeAceites = Aceite::count();
-        $numeroDeClientes = Cliente::count();
-        $numeroDeCompras = Compras::count();
-        $fechaActual = Carbon::now()->toDateString();
-        $comprasDelDia = Compras::whereDate('created_at', $fechaActual)->count();
+        $user = auth()->user();
+        if ($user && !$user->isAdmin()) {
+            return view('landing');
+        }
+        else if($user && $user->isAdmin())
+        {
+            $numeroDeAceites = Aceite::count();
+            $numeroDeClientes = Cliente::count();
+            $numeroDeCompras = Compras::count();
+            $fechaActual = Carbon::now()->toDateString();
+            $comprasDelDia = Compras::whereDate('created_at', $fechaActual)->count();
 
-        return view('dashboard', [
-            'numeroDeAceites' => $numeroDeAceites,
-            'numeroDeClientes' => $numeroDeClientes,
-            'numeroDeCompras' => $numeroDeCompras,
-            'comprasDelDia' => $comprasDelDia
-        ]);
+            return view('dashboard', [
+                'numeroDeAceites' => $numeroDeAceites,
+                'numeroDeClientes' => $numeroDeClientes,
+                'numeroDeCompras' => $numeroDeCompras,
+                'comprasDelDia' => $comprasDelDia
+            ]);    
+        }
+        return view('landing');
     }
 }

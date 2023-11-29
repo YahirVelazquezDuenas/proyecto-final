@@ -26,6 +26,14 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
+        User::create([
+            'name' => 'a',
+            'email' => 'a@a',
+            'password' => bcrypt('aaaaaaaa'),
+            'role_id' => Role::where('name', 'usuario')->first()->id,
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ]);
         Aceite::factory(5)->create();
         Compras::factory(5)->create()->each(function ($compra) {
             $aceites = Aceite::inRandomOrder()->limit(rand(2, 5))->get();

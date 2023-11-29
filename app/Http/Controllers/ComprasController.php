@@ -19,7 +19,7 @@ class ComprasController extends Controller
     {
         $compras= new Compras ();
 
-        $comprasIndex = Compras::all();
+        $comprasIndex = Compras::with('cliente')->get();
         $detalleIndex = DetalleCompra::all();
 
         return view('compras/indexCompras', compact ('comprasIndex', 'detalleIndex'));

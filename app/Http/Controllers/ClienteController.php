@@ -1,12 +1,11 @@
 <?php
-
-namespace App\Http\Controllers;
-
-use App\Models\Cliente;
-use Illuminate\Http\Request;
-
 namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
+use App\Models\Cliente;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 
 class ClienteController extends Controller
@@ -16,8 +15,6 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $cliente= new Cliente ();
-
         $clienteIndex = Cliente::all();
         return view('cliente/indexCliente', compact ('clienteIndex'));
     }
@@ -27,7 +24,12 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return view('cliente/createCliente');
+        $user = Auth::user();
+        if (!$user->cliente || $user->isAdmin()) {
+            return view('cliente/createCliente');
+        } else {
+            return redirect('/cliente')->with('error', 'Ya tiene un cliente asociado a su usuario.');
+        }
     }
 
     /**

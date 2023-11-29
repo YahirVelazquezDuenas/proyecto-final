@@ -16,6 +16,15 @@ class Aceite extends Model
         return $this->hasMany(DetalleCompra::class, 'id_aceite', 'id_aceite');
     }
 
+    public function setPrecioAttribute($value)
+    {
+        $this->attributes['precio'] = $value * 17.13;
+    }
+    public function getPrecioAttribute($value)
+    {
+        return $value / 17.13;
+    }
+
     protected $fillable = ['nombre', 'tipo', 'cantidad', 'marca', 'descripcion', 'precio', 'archivo_ubicacion', 'archivo_nombre'];
     protected $guarded = ['id_aceite'];
 
