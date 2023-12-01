@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aceite;
+use App\Models\Compras;
+use App\Models\DetalleCompra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -194,12 +196,21 @@ class AceiteController extends Controller
         if ($aceite->archivo_ubicacion) {
             Storage::delete($aceite->archivo_ubicacion);
         }
-    
-        // Eliminar el modelo de la base de datos
-        $aceite->delete();
 
         if (!$aceite) {
             return redirect()->route('aceite.index')->with('error', 'El aceite no se encontró.');
+        }
+        
+        $detalleCompras = DetalleCompra::where('id_aceite', $id)->get();
+
+        foreach ($detalleCompras as $detalleCompra) {
+            $compra = Compras::find($detalleCompra->id_compras);
+            if ($compra) {
+                $compra->delete();
+            }
+            
+            // Eliminar el DetalleCompras
+            $detalleCompra->delete();
         }
 
         $aceite->delete();

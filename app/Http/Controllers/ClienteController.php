@@ -176,6 +176,12 @@ class ClienteController extends Controller
             return redirect()->route('cliente.index')->with('error', 'El cliente no se encontró.');
         }
 
+        $compras = Compras::where('id_cliente', $id)->get();
+
+        foreach ($compras as $compra) {
+            $compra->delete(); 
+        }
+
         $cliente->delete();
 
         return redirect()->route('cliente.index')->with('success', 'El cliente se ha eliminado con éxito.');
