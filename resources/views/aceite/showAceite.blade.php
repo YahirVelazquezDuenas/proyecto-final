@@ -64,6 +64,7 @@
                     </tr>
                     @endif 
                 </table>
+                @if(auth()->user()->isAdmin())
                 <br><a href="{{ route('aceite.edit', $aceite->id_aceite) }}" class="button is-primary">Editar Aceite</a>
                 <form action="{{ route('aceite.destroy', $aceite->id_aceite) }}" method="POST">
                     @csrf
@@ -74,6 +75,7 @@
                 @csrf
                 @method('DELETE')
                     <button type="submit" class="button is-warning">Eliminar Archivo</button>
+                    @endif
                 </form>
                 <br><a href="{{ url('/aceite') }}" class="button is-info">Volver a la lista de aceites</a>
             </center>

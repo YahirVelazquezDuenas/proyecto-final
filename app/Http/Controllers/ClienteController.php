@@ -47,7 +47,9 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $user = auth()->user();
+        if($user->isAdmin()){
+            $request->validate([
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|unique:clientes',
@@ -71,11 +73,34 @@ class ClienteController extends Controller
             'comentario.string' => 'El campo comentario debe ser una cadena de texto.',
             'comentario.max' => 'El comentario no puede tener más de 255 caracteres.'
         ]);
-        
+        }else{
+            $request->validate([
+                'direccion' => 'required|string|max:255',
+                'telefono' => 'required|string|unique:clientes',
+                'comentario' => 'nullable|string|max:255',
+            ], [
+                'direccion.required' => 'El campo dirección es obligatorio.',
+                'direccion.string' => 'El campo dirección debe ser una cadena de texto.',
+                'direccion.max' => 'El campo dirección no puede tener más de 255 caracteres.',
+                'telefono.required' => 'El campo teléfono es obligatorio.',
+                'telefono.string' => 'El campo teléfono debe ser una cadena de texto.',
+                'telefono.unique' => 'El teléfono ya está en uso.',
+                'comentario.string' => 'El campo comentario debe ser una cadena de texto.',
+                'comentario.max' => 'El comentario no puede tener más de 255 caracteres.'
+            ]);
+        }
             $cliente = new Cliente();
-            $cliente->nombre = $request->nombre;
+            if($user->isAdmin())
+            {
+                $cliente->nombre = $request->nombre;
+                $cliente->correo = $request->correo;
+            }
+            else{
+                $cliente->nombre = $user->name;
+                $cliente->correo = $user->email;
+            }
+            
             $cliente->telefono = $request->telefono;
-            $cliente->correo = $request->correo;
             $cliente->direccion = $request->direccion;
             $cliente->comentario = $request->comentario;
             $cliente->user_id = auth()->id();
@@ -114,7 +139,7 @@ class ClienteController extends Controller
 
         $user = Auth::user();
 
-        if ($user->isAdmin() || ($cliente && $cliente->id_usuario === $user->id)) {
+        if ($user->isAdmin() || ($cliente && $cliente->user_id === $user->id)) {
             return view('/cliente/editCliente', ['cliente' => $cliente]);
         } else {
             return redirect()->route('cliente.index')->with('error', 'No tienes permisos para editar este cliente.');
@@ -126,12 +151,19 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $cliente = Cliente::find($id);
+    
+        if (!$cliente) {
+            return redirect()->route('cliente.index')->with('error', 'El cliente no se encontró.');
+        }
+        $user = auth()->user();
+        if($user->isAdmin()){
+            $request->validate([
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|unique:clientes,telefono,' . $id . ',id_cliente',
-            'correo' => 'required|string|email|unique:clientes,correo,' . $id . ',id_cliente',
-            'comentario' => 'nullable|string',
+            'correo' => 'required|string|email|max:255|unique:clientes,correo,' . $id . ',id_cliente',
+            'comentario' => 'nullable|string|max:255',
         ], [
             'nombre.required' => 'El campo nombre es obligatorio.',
             'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
@@ -146,20 +178,43 @@ class ClienteController extends Controller
             'correo.string' => 'El campo correo debe ser una cadena de texto.',
             'correo.email' => 'El correo electrónico no es válido.',
             'correo.unique' => 'El correo electrónico ya está en uso.',
+            'correo.max' => 'El campo correo no puede tener más de 255 caracteres.',
             'comentario.string' => 'El campo comentario debe ser una cadena de texto.',
+            'comentario.max' => 'El comentario no puede tener más de 255 caracteres.'
         ]);
-        $cliente = Cliente::find($id);
-    
-        if (!$cliente) {
-            return redirect()->route('cliente.index')->with('error', 'El cliente no se encontró.');
+        }else{
+            $request->validate([
+                'direccion' => 'required|string|max:255',
+                'telefono' => 'required|string|unique:clientes,telefono,' . $id . ',id_cliente',
+                'comentario' => 'nullable|string|max:255',
+            ], [
+                'direccion.required' => 'El campo dirección es obligatorio.',
+                'direccion.string' => 'El campo dirección debe ser una cadena de texto.',
+                'direccion.max' => 'El campo dirección no puede tener más de 255 caracteres.',
+                'telefono.required' => 'El campo teléfono es obligatorio.',
+                'telefono.string' => 'El campo teléfono debe ser una cadena de texto.',
+                'telefono.unique' => 'El teléfono ya está en uso.',
+                'comentario.string' => 'El campo comentario debe ser una cadena de texto.',
+                'comentario.max' => 'El comentario no puede tener más de 255 caracteres.'
+            ]);
         }
-        $cliente->nombre = $request->nombre;
-        
+
+        if($user->isAdmin())
+        {
+            $cliente->nombre = $request->nombre;
+            $cliente->correo = $request->correo;
+            
+        }
+        else{
+            $cliente->nombre = $user->name;
+            $cliente->correo = $user->email;
+
+        }
+        $cliente->user_id = $cliente->user_id;
         $cliente->telefono = $request->telefono;
-        $cliente->correo = $request->correo;
         $cliente->direccion = $request->direccion;
         $cliente->comentario = $request->comentario;
-        $cliente->user_id = $request->input('original_user_id');
+        //$cliente->user_id = $request->input('original_user_id');
         $cliente->save();
 
         return redirect()->route('cliente.index')->with('success', 'El cliente se ha actualizado con éxito.');

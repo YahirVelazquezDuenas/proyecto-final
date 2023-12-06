@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_aceite');
             $table->integer('cantidad');
             $table->timestamps();
-            
+            $table->softDeletes();
             $table->foreign('id_compra')->references('id_compra')->on('compras')->onDelete('cascade');
             $table->foreign('id_aceite')->references('id_aceite')->on('aceites')->onDelete('cascade');            
         });

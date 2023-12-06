@@ -45,9 +45,8 @@
         <!-- Begin Hero Content-->
         <div class="hero-body">
           <div class="container has-text-centered">
-            <h1 class="subtitle"></h1>
-            <h2 class="title"></h2>
-            <h1 class="subtitle profession"></h1>
+            
+
             <h1 class="subtitle profession"></h1>
           </div>
         </div>
@@ -60,6 +59,10 @@
     <!-- End Header -->
     <!-- Begin Main Content -->
     <div class="main-content">
+    @guest
+    <h1 class="title has-text-centered section-subtitle">Necesitas iniciar sesión para ver nuestros productos</h1>
+    <center><div class="register-button"><a href="/login">Inicia sesión</a></div></center>
+    @endguest
       <!-- Begin About Me Section -->
       <div class="section-light about-me" id="about-me">
         <div class="container">

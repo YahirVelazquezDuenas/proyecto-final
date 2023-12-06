@@ -64,14 +64,24 @@
     @endif
 @endauth
 @guest 
-        <div class="container">
+<div class="container">
             <div class="navbar-brand">
                 <a class="navbar-item" href="javascript:history.back()">
                 Volver</a>
                 <a class="navbar-item" href="{{ url('/landing') }}">
                 Inicio</a>
+                <a class="navbar-item" href="#about-me">
+                Acerca de nosotros
+                <a class="navbar-item" href="#services">
+                Servicios
+                <a class="navbar-item" href="#skills">
+                Ubicación
+                <a class="navbar-item" href="#my-work">
+                Galería
+                <a class="navbar-item" href="#contact">
+                Contacto
                 <a class="navbar-item" href="/login">
                 Iniciar sesión</a>
             </div>        
-        </div> 
+        </div>
 @endguest

@@ -29,12 +29,26 @@
                         @endif
                         <form action="{{ url('/cliente') }}" method="POST">
                             @csrf
-                            <div class="field">
+                            @auth
+                                @if(auth()->user()->isAdmin())
+                                <div class="field">
                                 <div class="control">
                                     <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Pedro Castro Salcedo"
                                     autofocus="" value="{{ old('nombre') }}" required>
+                                </div><br>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" value="{{ old('correo') }}" required>
                                 </div>
                             </div><br>
+                            @else
+                            <div class="field">
+                                <div class="control">
+                                    El correo y nombre se tomarán de tu usuario.
+                                </div>
+                            </div><br>
+                                @endif
+                            @endauth
                             <div class="field">
                                 <div class="control">
                                     <input class="input is-large" type="text" id="direccion" name="direccion" placeholder="Dirección: Av. Sim 9877-21. Col. Pachín." value="{{ old('direccion') }}" required>
@@ -47,14 +61,10 @@
                             </div><br>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" value="{{ old('correo') }}" required>
-                                </div>
-                            </div><br>
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Soy un nuevo ciente." value="{{ old('comentario') }}">
+                                    <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Soy un nuevo cliente." value="{{ old('comentario') }}">
                                 </div>
                             </div>
+                            </div><br>
                             <div class="field">
                                 <div class="control">
                                     <button class="button is-block is-info is-large is-fullwidth" type="submit">

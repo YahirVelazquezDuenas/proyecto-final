@@ -30,12 +30,26 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <div class="field">
-                            <div class="control">
-                                <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Pedro Castro Salcedo"
-                                autofocus="" value="{{$cliente->nombre}}" required>
-                            </div>
-                        </div><br>
+                        @auth
+                                @if(auth()->user()->isAdmin())
+                                <div class="field">
+                                <div class="control">
+                                    <input class="input is-large" type="text" id="nombre" name="nombre" placeholder="Nombre: Pedro Castro Salcedo"
+                                    autofocus="" value="{{ $cliente->nombre}}" required>
+                                </div><br>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" value="{{ $cliente->correo}}" required>
+                                </div>
+                            </div><br>
+                            @else
+                            <div class="field">
+                                <div class="control">
+                                    El correo y nombre se tomarán de tu usuario.
+                                </div>
+                            </div><br>
+                                @endif
+                            @endauth
                         <div class="field">
                             <div class="control">
                                 <input class="input is-large" type="text" id="direccion" name="direccion" placeholder="Dirección: Av. Sim 9877-21. Col. Pachín."
@@ -49,13 +63,7 @@
                         </div><br>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-large" type="text" id="correo" name="correo" placeholder="Correo: pedro@hotmail.com" value="{{$cliente->correo}}" required>
-                            </div>
-                        </div><br>
-                        <input type="hidden" name="original_user_id" value="{{ $cliente->user_id }}">
-                        <div class="field">
-                            <div class="control">
-                                <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Soy un nuevo ciente." value="{{$cliente->comentario}}">
+                                <input class="input is-large" type="text" id="comentario" name="comentario" placeholder="Comentario: Soy un nuevo cliente." value="{{$cliente->comentario}}">
                             </div>
                         </div><br>
                         <div class="field">
@@ -90,8 +98,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
-        </div>
+        
         <x-derechos></x-derechos>
     </section>
     </body>

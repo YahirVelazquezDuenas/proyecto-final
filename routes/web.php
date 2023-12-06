@@ -35,11 +35,11 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('aceite', AceiteController::class);
     Route::get('aceite-descarga/{aceite}', [AceiteController::class, 'descargar'])->name('aceite.descarga');
     Route::delete('/aceite/{aceite}/eliminar-archivo', [AceiteController::class, 'destroyArchivo'])->name('aceite.eliminar-archivo');
-    //Route::get('aceite-descarga/{aceite}', [AceiteController::class, 'descargar'])->name('aceite.descarga');
-    // Route::get('/aceite/{id}/edit', 'AceiteController@edit')->name('editAceite');
-    // Route::put('/aceite/{id}', 'AceiteController@update')->name('updateAceite');
-    // Route::delete('/aceite/{id}', 'AceiteController@destroy')->name('destroyAceite');
-    // Route::delete('/aceite/{aceite}/eliminar-archivo', [AceiteController::class, 'destroyArchivo'])->name('aceite.eliminar-archivo');
+    Route::get('aceite-descarga/{aceite}', [AceiteController::class, 'descargar'])->name('aceite.descarga');
+    //Route::get('/aceite/{id}/edit', 'AceiteController@edit')->name('editAceite');
+    //Route::put('/aceite/{id}', 'AceiteController@update')->name('updateAceite');
+    Route::delete('/aceite/{id}', 'AceiteController@destroy')->name('destroyAceite');
+    Route::delete('/aceite/{aceite}/eliminar-archivo', [AceiteController::class, 'destroyArchivo'])->name('aceite.eliminar-archivo');
     //Route::post('/aceite', 'AceiteController@store')->name('createAceite');
     //Route::get('/aceite/{id}', 'AceiteController@show')->name('showAceite');
 

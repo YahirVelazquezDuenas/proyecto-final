@@ -90,7 +90,7 @@
                                 </tr>
                                 <tr>
                                     <td>Imagen</td>
-                                    <td><img src="{{ \Storage::url($aceite->archivo_ubicacion)}}" alt="Esta es una imagen"></td>
+                                    <td><img src="{{ \Storage::url($aceite->archivo_ubicacion)}}" ></td>
                                 </tr>
                             @endif   
                         </table>

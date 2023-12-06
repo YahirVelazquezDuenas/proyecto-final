@@ -1,3 +1,15 @@
+img {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
+td img {
+  display: block;
+  margin: auto;
+}
+
+
 html,body {
   font-family: 'Questrial', sans-serif;
   font-size: 14px;

@@ -7,6 +7,8 @@ use App\Models\Compras;
 use App\Models\DetalleCompra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class AceiteController extends Controller
 {
@@ -40,7 +42,7 @@ class AceiteController extends Controller
             'tipo' => 'nullable|string|max:255',
             'cantidad' => 'nullable|numeric|max:999999.99|min:0',
             'marca' => 'nullable|string|max:255',
-            'descripcion' => 'string|unique:aceites|max:255|required',
+            'descripcion' => 'string|max:255|required|unique:aceites',
             'precio'=> 'required|numeric|max:999999.99|min:0',
             'archivo' => 'required|max:10000'
         ], [
@@ -109,13 +111,20 @@ class AceiteController extends Controller
      */
     public function edit($id)
     {
-        $aceite = Aceite::find($id);
+        $user = Auth::user();
+        if($user->isAdmin())
+        {
+            $aceite = Aceite::find($id);
 
-        if (!$aceite) {
-            return redirect()->route('aceite.index')->with('error', 'El aceite no se encontró.');
+            if (!$aceite) {
+                return redirect()->route('aceite.index')->with('error', 'El aceite no se encontró.');
+            }
+
+            return view('/aceite/editAceite', ['aceite' => $aceite]);   
+        }else{
+            return redirect()->back()->with('error', 'No puedes editar este aceite.');
         }
-
-        return view('/aceite/editAceite', ['aceite' => $aceite]);
+        
     }
 
     /**

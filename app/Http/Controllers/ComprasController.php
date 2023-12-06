@@ -131,18 +131,19 @@ class ComprasController extends Controller
      */
     public function show(Request $request)
     {  
+        $user = Auth::user();
         $id = $request->input('id_compra');
         $compra = Compras::find($id);
         $detalle = DetalleCompra::find($id);
 
-        if (Gate::allows('view', $compra)) {
-            return view('compras.show', compact('compra'));
-        } else {
-            abort(403, 'No tienes permiso para ver esta compra.');
-        }
-            
         if (!$compra) {
             return redirect()->back()->with('errorc', 'La compra no se encontró.');
+        }
+
+        if ($user->cliente->id_cliente === $compra->cliente->id_cliente||$user->isAdmin()) {
+            return view('/compras/showCompras', compact('compra'));
+        } else {
+            return redirect()->back()->with('errorc', 'No tiene permiso de ver esta compra.');
         }
 
         return view('/compras/showCompras', ['compra' => $compra, 'detalle' => $detalle]);
@@ -156,14 +157,15 @@ class ComprasController extends Controller
         $compras = Compras::find($id);
         $aceites = Aceite::all();
         $clientes = Cliente::all();
+        $user = Auth::user();
 
-        if (Gate::allows('view', $compras)) {
-            return view('compras.show', compact('compra'));
+        if ($user->cliente->id_cliente === $compras->cliente->id_cliente||$user->isAdmin()) {
+            return view('/compras/editCompras', compact('compras','clientes','aceites'));
         } else {
-            abort(403, 'No tienes permiso para ver esta compra.');
+            return redirect()->back()->with('errorc', 'No tiene permiso de editar esta compra.');
         }
 
-        if (!$compras) {
+        if (!$compra) {
             return redirect()->route('compras.index')->with('error', 'La compra no se encontró.');
         }
 

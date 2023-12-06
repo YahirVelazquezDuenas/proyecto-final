@@ -16,7 +16,7 @@ class PostPolicy
 
     public function view(User $user, Compra $compra)
     {
-        return $user->id === $compra->user_id;
+        return $user->cliente->id_cliente === $compras->cliente->id_cliente;
     }
 
 }

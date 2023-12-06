@@ -72,11 +72,13 @@
                             </div>
                         </div>
                         <br>
+                        @if($aceite->archivo_ubicacion)
                         <div class="field">
                             <div class="control">
                                 <label for="archivo">Imagen:</label>
                                 <img src="{{ \Storage::url($aceite->archivo_ubicacion)}}" alt="Esta es una imagen">
                             </div>
+                            @endif
                         </div>
                         <br>
                         <div class="field">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DetalleCompra extends Model
 {
@@ -22,5 +23,9 @@ class DetalleCompra extends Model
     protected $fillable = ['id_compra', 'id_aceite', 'cantidad'];
 
     protected $guarded = ['id_detalle'];
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
 }
